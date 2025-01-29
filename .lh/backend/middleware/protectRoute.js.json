@@ -1,0 +1,30 @@
+{
+    "sourceFile": "backend/middleware/protectRoute.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1738135107042,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738135729242,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,19 @@\n import jwt from 'jsonwebtoken';\r\n-\r\n+import User from '../models/user.model.js';\r\n const protectRoute = (req, res) => {\r\n     try {\r\n         const token = req.cookies.jwt;\r\n+        if(!token) {\r\n+            return res.status(401).json({error: 'Unauthorized - No Token Provided'});\r\n+        }\r\n+        const decoded = jwt.verify(token, process.env.JWT_SECRET);\r\n+\r\n+        if(!decoded) {\r\n+            return res.status(401).json({error: 'Unauthorized - Invalid Token'});\r\n+        }\r\n+\r\n+        const user = await User.findById(decoded.userId);\r\n         \r\n     } catch (error) {\r\n         console.error('Error in protectRoute middleware:', error.message);\r\n         res.status(500).json({error: 'Internal Server Error'});\r\n"
+                },
+                {
+                    "date": 1738136014153,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import jwt from 'jsonwebtoken';\r\n import User from '../models/user.model.js';\r\n-const protectRoute = (req, res) => {\r\n+const protectRoute = async (req, res, next) => {\r\n     try {\r\n         const token = req.cookies.jwt;\r\n         if(!token) {\r\n             return res.status(401).json({error: 'Unauthorized - No Token Provided'});\r\n@@ -11,11 +11,19 @@\n         if(!decoded) {\r\n             return res.status(401).json({error: 'Unauthorized - Invalid Token'});\r\n         }\r\n \r\n-        const user = await User.findById(decoded.userId);\r\n-        \r\n+        const user = await User.findById(decoded.userId).select('-password');\r\n+        if(!user) {\r\n+            return res.status(404).json({error: 'User not found'});\r\n+        }\r\n+        req.user = user;\r\n\\ No newline at end of file\n+\r\n+        next();\r\n+\r\n     } catch (error) {\r\n         console.error('Error in protectRoute middleware:', error.message);\r\n         res.status(500).json({error: 'Internal Server Error'});\r\n     }\r\n-};\n+};\r\n+\r\n+export default protectRoute;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738138004492,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n         const user = await User.findById(decoded.userId).select('-password');\r\n         if(!user) {\r\n             return res.status(404).json({error: 'User not found'});\r\n         }\r\n-        req.user = user;\r\n+        req.user_id = user._id; \r\n \r\n         next();\r\n \r\n     } catch (error) {\r\n"
+                }
+            ],
+            "date": 1738135107042,
+            "name": "Commit-0",
+            "content": "import jwt from 'jsonwebtoken';\r\n\r\nconst protectRoute = (req, res) => {\r\n    try {\r\n        const token = req.cookies.jwt;\r\n        \r\n    } catch (error) {\r\n        console.error('Error in protectRoute middleware:', error.message);\r\n        res.status(500).json({error: 'Internal Server Error'});\r\n    }\r\n};"
+        }
+    ]
+}

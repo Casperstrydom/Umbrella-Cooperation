@@ -1,0 +1,22 @@
+{
+    "sourceFile": "backend/middleware/protectRoutes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1738103418706,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738104099079,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,19 @@\n-import mongoose from \"mongoose\";\r\n+import jwt from \"jsonwebtoken\";\r\n \r\n-const conversationSchema = new mongoose.Schema(\r\n-\t{\r\n-\t\tparticipants: [\r\n-\t\t\t{\r\n-\t\t\t\ttype: mongoose.Schema.Types.ObjectId,\r\n-\t\t\t\tref: \"User\",\r\n-\t\t\t},\r\n-\t\t],\r\n-\t\tmessages: [\r\n-\t\t\t{\r\n-\t\t\t\ttype: mongoose.Schema.Types.ObjectId,\r\n-\t\t\t\tref: \"Message\",\r\n-\t\t\t\tdefault: [],\r\n-\t\t\t},\r\n-\t\t],\r\n-\t},\r\n-\t{ timestamps: true }\r\n-);\r\n+const protectRoute = (req, res, next) => {\r\n+    const token = req.headers.authorization?.split(\" \")[1]; // Extract the token from the Authorization header\r\n+    if (!token) {\r\n\\ No newline at end of file\n+        return res.status(401).json({ message: \"Authorization token is missing\" });\r\n+    }\r\n \r\n-const Conversation = mongoose.model(\"Conversation\", conversationSchema);\r\n+    try {\r\n+        const decoded = jwt.verify(token, process.env.JWT_SECRET); // Verify token using your JWT_SECRET\r\n+        req.user = decoded; // Add the user data to the request object\r\n+        next(); // Pass control to the next middleware or route handler\r\n+    } catch (error) {\r\n+        console.error(\"Invalid token:\", error.message);\r\n+        return res.status(401).json({ message: \"Invalid token\" });\r\n+    }\r\n+};\r\n \r\n-export default Conversation;\n+export default protectRoute;\r\n"
+                }
+            ],
+            "date": 1738103418706,
+            "name": "Commit-0",
+            "content": "import mongoose from \"mongoose\";\r\n\r\nconst conversationSchema = new mongoose.Schema(\r\n\t{\r\n\t\tparticipants: [\r\n\t\t\t{\r\n\t\t\t\ttype: mongoose.Schema.Types.ObjectId,\r\n\t\t\t\tref: \"User\",\r\n\t\t\t},\r\n\t\t],\r\n\t\tmessages: [\r\n\t\t\t{\r\n\t\t\t\ttype: mongoose.Schema.Types.ObjectId,\r\n\t\t\t\tref: \"Message\",\r\n\t\t\t\tdefault: [],\r\n\t\t\t},\r\n\t\t],\r\n\t},\r\n\t{ timestamps: true }\r\n);\r\n\r\nconst Conversation = mongoose.model(\"Conversation\", conversationSchema);\r\n\r\nexport default Conversation;"
+        }
+    ]
+}

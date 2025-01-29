@@ -1,0 +1,26 @@
+{
+    "sourceFile": "backend/models/message.model.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1738103274443,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738131096724,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,26 +1,21 @@\n import mongoose from \"mongoose\";\r\n \r\n-const messageSchema = new mongoose.Schema(\r\n-\t{\r\n-\t\tsenderId: {\r\n-\t\t\ttype: mongoose.Schema.Types.ObjectId,\r\n-\t\t\tref: \"User\",\r\n-\t\t\trequired: true,\r\n-\t\t},\r\n-\t\treceiverId: {\r\n-\t\t\ttype: mongoose.Schema.Types.ObjectId,\r\n-\t\t\tref: \"User\",\r\n-\t\t\trequired: true,\r\n-\t\t},\r\n-\t\tmessage: {\r\n-\t\t\ttype: String,\r\n-\t\t\trequired: true,\r\n-\t\t},\r\n-\t\t// createdAt, updatedAt\r\n-\t},\r\n-\t{ timestamps: true }\r\n-);\r\n+const messageSchema = new mongoose.Schema({\r\n+    senderId: {\r\n+       type: mongoose.Schema.Types.ObjectId,\r\n+       ref: 'User',\r\n\\ No newline at end of file\n+       required: true\r\n+    },\r\n \r\n-const Message = mongoose.model(\"Message\", messageSchema);\r\n+    receiverId: {\r\n+       type: mongoose.Schema.Types.ObjectId,\r\n+       ref: 'User',\r\n+       required: true\r\n+    },\r\n \r\n-export default Message;\n+    message: {\r\n+        type: String,\r\n+        required: true\r\n+    }\r\n+    // createdAt, updatedAt\r\n+}, {timestamps: true});\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738131140653,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,5 +17,9 @@\n         type: String,\r\n         required: true\r\n     }\r\n     // createdAt, updatedAt\r\n-}, {timestamps: true});\n\\ No newline at end of file\n+}, {timestamps: true});\r\n+\r\n+const Message = mongoose.model('Message', messageSchema);\r\n+\r\n+export default Message;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1738103274442,
+            "name": "Commit-0",
+            "content": "import mongoose from \"mongoose\";\r\n\r\nconst messageSchema = new mongoose.Schema(\r\n\t{\r\n\t\tsenderId: {\r\n\t\t\ttype: mongoose.Schema.Types.ObjectId,\r\n\t\t\tref: \"User\",\r\n\t\t\trequired: true,\r\n\t\t},\r\n\t\treceiverId: {\r\n\t\t\ttype: mongoose.Schema.Types.ObjectId,\r\n\t\t\tref: \"User\",\r\n\t\t\trequired: true,\r\n\t\t},\r\n\t\tmessage: {\r\n\t\t\ttype: String,\r\n\t\t\trequired: true,\r\n\t\t},\r\n\t\t// createdAt, updatedAt\r\n\t},\r\n\t{ timestamps: true }\r\n);\r\n\r\nconst Message = mongoose.model(\"Message\", messageSchema);\r\n\r\nexport default Message;"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "backend/socket/socket.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1738103709576,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1738103709576,
+            "name": "Commit-0",
+            "content": "import { Server } from \"socket.io\";\r\nimport http from \"http\";\r\nimport express from \"express\";\r\n\r\nconst app = express();\r\n\r\nconst server = http.createServer(app);\r\nconst io = new Server(server, {\r\n\tcors: {\r\n\t\torigin: [\"http://localhost:3000\"],\r\n\t\tmethods: [\"GET\", \"POST\"],\r\n\t},\r\n});\r\n\r\nexport const getReceiverSocketId = (receiverId) => {\r\n\treturn userSocketMap[receiverId];\r\n};\r\n\r\nconst userSocketMap = {}; // {userId: socketId}\r\n\r\nio.on(\"connection\", (socket) => {\r\n\tconsole.log(\"a user connected\", socket.id);\r\n\r\n\tconst userId = socket.handshake.query.userId;\r\n\tif (userId != \"undefined\") userSocketMap[userId] = socket.id;\r\n\r\n\t// io.emit() is used to send events to all the connected clients\r\n\tio.emit(\"getOnlineUsers\", Object.keys(userSocketMap));\r\n\r\n\t// socket.on() is used to listen to the events. can be used both on client and server side\r\n\tsocket.on(\"disconnect\", () => {\r\n\t\tconsole.log(\"user disconnected\", socket.id);\r\n\t\tdelete userSocketMap[userId];\r\n\t\tio.emit(\"getOnlineUsers\", Object.keys(userSocketMap));\r\n\t});\r\n});\r\n\r\nexport { app, io, server };"
+        }
+    ]
+}

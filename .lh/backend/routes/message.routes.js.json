@@ -1,0 +1,66 @@
+{
+    "sourceFile": "backend/routes/message.routes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 12,
+            "patches": [
+                {
+                    "date": 1738103159803,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738104023433,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import express from \"express\";\r\n import { getMessages, sendMessage } from \"../controllers/message.controller.js\";\r\n-import protectRoute from \"../middleware/protectRoute.js\";\r\n+import protectRoute from \"../middleware/protectRoute.js\"; // Ensure .js is included\r\n \r\n+\r\n const router = express.Router();\r\n \r\n router.get(\"/:id\", protectRoute, getMessages);\r\n router.post(\"/send/:id\", protectRoute, sendMessage);\r\n"
+                },
+                {
+                    "date": 1738132588723,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,7 @@\n-import express from \"express\";\r\n-import { getMessages, sendMessage } from \"../controllers/message.controller.js\";\r\n-import protectRoute from \"../middleware/protectRoute.js\"; // Ensure .js is included\r\n+import express from 'express';\r\n \r\n-\r\n const router = express.Router();\r\n \r\n-router.get(\"/:id\", protectRoute, getMessages);\r\n-router.post(\"/send/:id\", protectRoute, sendMessage);\r\n+router.post('/send/:id',sendMessage)\r\n \r\n export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738132847134,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,9 @@\n+import express from 'express';\r\n+\r\n+import { sendMessage } from './controllers/message.controller';\r\n+\r\n+const router = express.Router();\r\n+\r\n+router.post('/send/:id',sendMessage)\r\n+\r\n+export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738132873226,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,8 @@\n import express from 'express';\r\n+import { sendMessage } from './controllers/message.controller.js';\r\n \r\n-import { sendMessage } from './controllers/message.controller';\r\n-\r\n const router = express.Router();\r\n \r\n router.post('/send/:id',sendMessage)\r\n \r\n-export default router;\n-import express from 'express';\r\n-\r\n-const router = express.Router();\r\n-\r\n-router.post('/send/:id',sendMessage)\r\n-\r\n export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738133080328,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,7 +2,7 @@\n import { sendMessage } from './controllers/message.controller.js';\r\n \r\n const router = express.Router();\r\n \r\n-router.post('/send/:id',sendMessage)\r\n+router.post('/sent/:id',sendMessage)\r\n \r\n export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738133811524,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import express from 'express';\r\n-import { sendMessage } from './controllers/message.controller.js';\r\n+import { sendMessage } from '../controllers/message.controller.js'; \r\n \r\n const router = express.Router();\r\n \r\n router.post('/sent/:id',sendMessage)\r\n"
+                },
+                {
+                    "date": 1738134707263,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,7 +2,7 @@\n import { sendMessage } from '../controllers/message.controller.js'; \r\n \r\n const router = express.Router();\r\n \r\n-router.post('/sent/:id',sendMessage)\r\n+router.post('/sent/:id',protectRoute, sendMessage)\r\n \r\n export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738137489974,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import express from 'express';\r\n-import { sendMessage } from '../controllers/message.controller.js'; \r\n+import { sendMessage } from '../controllers/message.controller.js';\r\n+import protectRoute from '../middleware/auth.middleware.js'; // ✅ Import protectRoute\r\n \r\n const router = express.Router();\r\n \r\n-router.post('/sent/:id',protectRoute, sendMessage)\r\n\\ No newline at end of file\n+router.post('/sent/:id', protectRoute, sendMessage); // ✅ Now protectRoute is defined\r\n \r\n-export default router;\n+export default router;\r\n"
+                },
+                {
+                    "date": 1738137538129,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import express from 'express';\r\n import { sendMessage } from '../controllers/message.controller.js';\r\n-import protectRoute from '../middleware/auth.middleware.js'; // ✅ Import protectRoute\r\n+import protectRoute from '../middleware/protectRoute.js'; // ✅ Correct import\r\n \r\n const router = express.Router();\r\n \r\n-router.post('/sent/:id', protectRoute, sendMessage); // ✅ Now protectRoute is defined\r\n+router.post('/sent/:id', protectRoute, sendMessage); // ✅ No more ReferenceError\r\n \r\n export default router;\r\n"
+                },
+                {
+                    "date": 1738139060243,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n import express from 'express';\r\n import { sendMessage } from '../controllers/message.controller.js';\r\n-import protectRoute from '../middleware/protectRoute.js'; // ✅ Correct import\r\n+import protectRoute from '../middleware/protectRoute.js'; \r\n \r\n const router = express.Router();\r\n \r\n-router.post('/sent/:id', protectRoute, sendMessage); // ✅ No more ReferenceError\r\n+router.get('/id', protectRoute, getMessages); \r\n+router.post('/sent/:id', protectRoute, sendMessage); \r\n \r\n export default router;\r\n"
+                },
+                {
+                    "date": 1738140640258,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,13 @@\n import express from 'express';\r\n-import { sendMessage } from '../controllers/message.controller.js';\r\n-import protectRoute from '../middleware/protectRoute.js'; \r\n+import { sendMessage, getMessages } from '../controllers/message.controller.js';  // Import getMessages here\r\n+import protectRoute from '../middleware/protectRoute.js';\r\n \r\n const router = express.Router();\r\n \r\n-router.get('/id', protectRoute, getMessages); \r\n-router.post('/sent/:id', protectRoute, sendMessage); \r\n+// Use the getMessages controller in the route\r\n+router.get('/conversation/:id', protectRoute, getMessages);  // Change the route to '/conversation/:id'\r\n \r\n+// POST request for sending a message\r\n+router.post('/sent/:id', protectRoute, sendMessage);\r\n+\r\n export default router;\r\n"
+                },
+                {
+                    "date": 1738141067417,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \r\n const router = express.Router();\r\n \r\n // Use the getMessages controller in the route\r\n-router.get('/conversation/:id', protectRoute, getMessages);  // Change the route to '/conversation/:id'\r\n+router.get('/:id', protectRoute, getMessages);  // Change the route to '/conversation/:id'\r\n \r\n // POST request for sending a message\r\n router.post('/sent/:id', protectRoute, sendMessage);\r\n \r\n"
+                }
+            ],
+            "date": 1738103159803,
+            "name": "Commit-0",
+            "content": "import express from \"express\";\r\nimport { getMessages, sendMessage } from \"../controllers/message.controller.js\";\r\nimport protectRoute from \"../middleware/protectRoute.js\";\r\n\r\nconst router = express.Router();\r\n\r\nrouter.get(\"/:id\", protectRoute, getMessages);\r\nrouter.post(\"/send/:id\", protectRoute, sendMessage);\r\n\r\nexport default router;"
+        }
+    ]
+}

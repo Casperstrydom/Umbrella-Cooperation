@@ -1,0 +1,26 @@
+{
+    "sourceFile": "backend/models/conversation.model.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1738103330184,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738131537245,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,22 @@\n import mongoose from \"mongoose\";\r\n \r\n-const conversationSchema = new mongoose.Schema(\r\n-\t{\r\n-\t\tparticipants: [\r\n-\t\t\t{\r\n-\t\t\t\ttype: mongoose.Schema.Types.ObjectId,\r\n-\t\t\t\tref: \"User\",\r\n-\t\t\t},\r\n-\t\t],\r\n-\t\tmessages: [\r\n-\t\t\t{\r\n-\t\t\t\ttype: mongoose.Schema.Types.ObjectId,\r\n-\t\t\t\tref: \"Message\",\r\n-\t\t\t\tdefault: [],\r\n-\t\t\t},\r\n-\t\t],\r\n-\t},\r\n-\t{ timestamps: true }\r\n-);\r\n+const conversationSchema = new mongoose.Schema({\r\n+    participants: [\r\n+        {\r\n+            type: mongoose.Schema.Types.ObjectId,\r\n+            ref: 'User'\r\n+        },\r\n+    ],\r\n+    messages: [\r\n+        {\r\n+            type: mongoose.Schema.Types.ObjectId,\r\n+            ref: 'Message',\r\n+            default:[],\r\n+        },\r\n+    ],\r\n \r\n-const Conversation = mongoose.model(\"Conversation\", conversationSchema);\r\n+}, {timestamps: true});\r\n \r\n+const Conversation = mongoose.model('Conversation', conversationSchema);\r\n+\r\n export default Conversation;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738131615303,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,11 @@\n             default:[],\r\n         },\r\n     ],\r\n \r\n-}, {timestamps: true});\r\n+}, {timestamps: true} \r\n \r\n+);\r\n+\r\n const Conversation = mongoose.model('Conversation', conversationSchema);\r\n \r\n export default Conversation;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1738103330184,
+            "name": "Commit-0",
+            "content": "import mongoose from \"mongoose\";\r\n\r\nconst conversationSchema = new mongoose.Schema(\r\n\t{\r\n\t\tparticipants: [\r\n\t\t\t{\r\n\t\t\t\ttype: mongoose.Schema.Types.ObjectId,\r\n\t\t\t\tref: \"User\",\r\n\t\t\t},\r\n\t\t],\r\n\t\tmessages: [\r\n\t\t\t{\r\n\t\t\t\ttype: mongoose.Schema.Types.ObjectId,\r\n\t\t\t\tref: \"Message\",\r\n\t\t\t\tdefault: [],\r\n\t\t\t},\r\n\t\t],\r\n\t},\r\n\t{ timestamps: true }\r\n);\r\n\r\nconst Conversation = mongoose.model(\"Conversation\", conversationSchema);\r\n\r\nexport default Conversation;"
+        }
+    ]
+}

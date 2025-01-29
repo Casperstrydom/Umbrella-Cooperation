@@ -1,0 +1,30 @@
+{
+    "sourceFile": "package.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1738014172877,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738014766828,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,20 @@\n   \"name\": \"casper\",\n   \"version\": \"1.0.0\",\n   \"main\": \"server.js\",\n   \"scripts\": {\n-    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n+    \"server\": \"node backend/server.js\"\n   },\n   \"keywords\": [],\n   \"author\": \"\",\n   \"license\": \"ISC\",\n-  \"description\": \"\"\n+  \"description\": \"\",\n+  \"dependencies\": {\n+    \"bcryptjs\": \"^2.4.3\",\n+    \"cookie-parser\": \"^1.4.7\",\n+    \"dotenv\": \"^16.4.7\",\n+    \"express\": \"^4.21.2\",\n+    \"jsonwebtoken\": \"^9.0.2\",\n+    \"mongoose\": \"^8.9.5\",\n+    \"socket.io\": \"^4.8.1\"\n+  }\n }\n"
+                },
+                {
+                    "date": 1738015342673,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,24 @@\n+{\n+  \"name\": \"casper\",\n+  \"version\": \"1.0.0\",\n+  \"main\": \"server.js\",\n+  \"scripts\": {\n+    \"server\": \"nodemon backend/server.js\"\n+  },\n+  \"keywords\": [],\n+  \"author\": \"\",\n+  \"license\": \"ISC\",\n+  \"description\": \"\",\n+  \"dependencies\": {\n+    \"bcryptjs\": \"^2.4.3\",\n+    \"cookie-parser\": \"^1.4.7\",\n+    \"dotenv\": \"^16.4.7\",\n+    \"express\": \"^4.21.2\",\n+    \"jsonwebtoken\": \"^9.0.2\",\n+    \"mongoose\": \"^8.9.5\",\n+    \"socket.io\": \"^4.8.1\"\n+  },\n+  \"devDependencies\": {\n+    \"nodemon\": \"^3.1.9\"\n+  }\n+}\n"
+                },
+                {
+                    "date": 1738016081468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n   \"main\": \"server.js\",\n   \"scripts\": {\n     \"server\": \"nodemon backend/server.js\"\n   },\n+  \"type\": \"module\",\n   \"keywords\": [],\n   \"author\": \"\",\n   \"license\": \"ISC\",\n   \"description\": \"\",\n@@ -21,25 +22,4 @@\n   \"devDependencies\": {\n     \"nodemon\": \"^3.1.9\"\n   }\n }\n-{\n-  \"name\": \"casper\",\n-  \"version\": \"1.0.0\",\n-  \"main\": \"server.js\",\n-  \"scripts\": {\n-    \"server\": \"node backend/server.js\"\n-  },\n-  \"keywords\": [],\n-  \"author\": \"\",\n-  \"license\": \"ISC\",\n-  \"description\": \"\",\n-  \"dependencies\": {\n-    \"bcryptjs\": \"^2.4.3\",\n-    \"cookie-parser\": \"^1.4.7\",\n-    \"dotenv\": \"^16.4.7\",\n-    \"express\": \"^4.21.2\",\n-    \"jsonwebtoken\": \"^9.0.2\",\n-    \"mongoose\": \"^8.9.5\",\n-    \"socket.io\": \"^4.8.1\"\n-  }\n-}\n"
+                }
+            ],
+            "date": 1738014172877,
+            "name": "Commit-0",
+            "content": "{\n  \"name\": \"casper\",\n  \"version\": \"1.0.0\",\n  \"main\": \"server.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"keywords\": [],\n  \"author\": \"\",\n  \"license\": \"ISC\",\n  \"description\": \"\"\n}\n"
+        }
+    ]
+}

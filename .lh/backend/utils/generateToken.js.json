@@ -1,0 +1,50 @@
+{
+    "sourceFile": "backend/utils/generateToken.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1738103798896,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738107844863,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,38 +1,5 @@\n-import { Server } from \"socket.io\";\r\n-import http from \"http\";\r\n-import express from \"express\";\r\n+import JWT from '..jsonwebtoken';\r\n \r\n-const app = express();\r\n-\r\n-const server = http.createServer(app);\r\n-const io = new Server(server, {\r\n-\tcors: {\r\n-\t\torigin: [\"http://localhost:3000\"],\r\n-\t\tmethods: [\"GET\", \"POST\"],\r\n-\t},\r\n-});\r\n-\r\n-export const getReceiverSocketId = (receiverId) => {\r\n-\treturn userSocketMap[receiverId];\r\n-};\r\n-\r\n-const userSocketMap = {}; // {userId: socketId}\r\n-\r\n-io.on(\"connection\", (socket) => {\r\n-\tconsole.log(\"a user connected\", socket.id);\r\n-\r\n-\tconst userId = socket.handshake.query.userId;\r\n-\tif (userId != \"undefined\") userSocketMap[userId] = socket.id;\r\n-\r\n-\t// io.emit() is used to send events to all the connected clients\r\n-\tio.emit(\"getOnlineUsers\", Object.keys(userSocketMap));\r\n-\r\n-\t// socket.on() is used to listen to the events. can be used both on client and server side\r\n-\tsocket.on(\"disconnect\", () => {\r\n-\t\tconsole.log(\"user disconnected\", socket.id);\r\n-\t\tdelete userSocketMap[userId];\r\n-\t\tio.emit(\"getOnlineUsers\", Object.keys(userSocketMap));\r\n-\t});\r\n-});\r\n-\r\n\\ No newline at end of file\n-export { app, io, server };\n+const generateTokenAndSetCookie = (userId, res) => {\r\n+    const token = JWT.sign({ userId }, process.env.JWT_SECRET, );\r\n+};\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738107961489,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n import JWT from '..jsonwebtoken';\r\n \r\n const generateTokenAndSetCookie = (userId, res) => {\r\n-    const token = JWT.sign({ userId }, process.env.JWT_SECRET, );\r\n+    const token = JWT.sign({ userId }, process.env.JWT_SECRET, {\r\n+        expiresIn: '15d',\r\n+    });\r\n };\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738108155723,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,5 +3,9 @@\n const generateTokenAndSetCookie = (userId, res) => {\r\n     const token = JWT.sign({ userId }, process.env.JWT_SECRET, {\r\n         expiresIn: '15d',\r\n     });\r\n+    res.cookie('jwt',token, {\r\n+        maxAge: 15 * 24 * 60 * 60 * 1000, // MS\r\n+        httpOnly: true,\r\n+    })\r\n };\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738108395209,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,7 +5,10 @@\n         expiresIn: '15d',\r\n     });\r\n     res.cookie('jwt',token, {\r\n         maxAge: 15 * 24 * 60 * 60 * 1000, // MS\r\n-        httpOnly: true,\r\n+        httpOnly: true, //prevent XXS attacks cross-site scripting attacks\r\n+        sameSite: 'strict', // CSRF attacks cross-site request forgery attacks\r\n\\ No newline at end of file\n     })\r\n-};\n+};\r\n+\r\n+export default generateTokenAndSetCookie;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738108774120,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import JWT from '..jsonwebtoken';\r\n+import JWT from 'jsonwebtoken';\r\n \r\n const generateTokenAndSetCookie = (userId, res) => {\r\n     const token = JWT.sign({ userId }, process.env.JWT_SECRET, {\r\n         expiresIn: '15d',\r\n"
+                },
+                {
+                    "date": 1738108817352,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import JWT from 'jsonwebtoken';\r\n+import JWT from '..jsonwebtoken';\r\n \r\n const generateTokenAndSetCookie = (userId, res) => {\r\n     const token = JWT.sign({ userId }, process.env.JWT_SECRET, {\r\n         expiresIn: '15d',\r\n"
+                },
+                {
+                    "date": 1738108924468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,14 @@\n-import JWT from '..jsonwebtoken';\r\n+import JWT from 'jsonwebtoken';\r\n \r\n const generateTokenAndSetCookie = (userId, res) => {\r\n     const token = JWT.sign({ userId }, process.env.JWT_SECRET, {\r\n         expiresIn: '15d',\r\n     });\r\n-    res.cookie('jwt',token, {\r\n+    res.cookie('jwt', token, {\r\n         maxAge: 15 * 24 * 60 * 60 * 1000, // MS\r\n-        httpOnly: true, //prevent XXS attacks cross-site scripting attacks\r\n-        sameSite: 'strict', // CSRF attacks cross-site request forgery attacks\r\n-    })\r\n+        httpOnly: true, // Prevent XXS (Cross-Site Scripting) attacks\r\n\\ No newline at end of file\n+        sameSite: 'strict', // CSRF (Cross-Site Request Forgery) protection\r\n+    });\r\n };\r\n \r\n-export default generateTokenAndSetCookie;\n+export default generateTokenAndSetCookie;\r\n"
+                },
+                {
+                    "date": 1738109355544,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n     res.cookie('jwt', token, {\r\n         maxAge: 15 * 24 * 60 * 60 * 1000, // MS\r\n         httpOnly: true, // Prevent XXS (Cross-Site Scripting) attacks\r\n         sameSite: 'strict', // CSRF (Cross-Site Request Forgery) protection\r\n+        secure: process.env.NODE_ENV !== 'development',\r\n     });\r\n };\r\n \r\n\\ No newline at end of file\n-export default generateTokenAndSetCookie;\n+export default generateTokenAndSetCookie;\r\n"
+                }
+            ],
+            "date": 1738103798896,
+            "name": "Commit-0",
+            "content": "import { Server } from \"socket.io\";\r\nimport http from \"http\";\r\nimport express from \"express\";\r\n\r\nconst app = express();\r\n\r\nconst server = http.createServer(app);\r\nconst io = new Server(server, {\r\n\tcors: {\r\n\t\torigin: [\"http://localhost:3000\"],\r\n\t\tmethods: [\"GET\", \"POST\"],\r\n\t},\r\n});\r\n\r\nexport const getReceiverSocketId = (receiverId) => {\r\n\treturn userSocketMap[receiverId];\r\n};\r\n\r\nconst userSocketMap = {}; // {userId: socketId}\r\n\r\nio.on(\"connection\", (socket) => {\r\n\tconsole.log(\"a user connected\", socket.id);\r\n\r\n\tconst userId = socket.handshake.query.userId;\r\n\tif (userId != \"undefined\") userSocketMap[userId] = socket.id;\r\n\r\n\t// io.emit() is used to send events to all the connected clients\r\n\tio.emit(\"getOnlineUsers\", Object.keys(userSocketMap));\r\n\r\n\t// socket.on() is used to listen to the events. can be used both on client and server side\r\n\tsocket.on(\"disconnect\", () => {\r\n\t\tconsole.log(\"user disconnected\", socket.id);\r\n\t\tdelete userSocketMap[userId];\r\n\t\tio.emit(\"getOnlineUsers\", Object.keys(userSocketMap));\r\n\t});\r\n});\r\n\r\nexport { app, io, server };"
+        }
+    ]
+}

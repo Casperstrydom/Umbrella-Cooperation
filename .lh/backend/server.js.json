@@ -1,0 +1,26 @@
+{
+    "sourceFile": "backend/server.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1738014660829,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738015080970,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,10 @@\n \r\n \r\n const app = express();\r\n \r\n+app.get('/', (req, res) => {\r\n+    //root route http://localhost:5000/\r\n+    res.send('Hello World');\r\n+});\r\n+\r\n app.listen(5000,() => console.log('Server running on port 5000'));\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738015512190,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,5 +9,5 @@\n     //root route http://localhost:5000/\r\n     res.send('Hello World');\r\n });\r\n \r\n-app.listen(5000,() => co\n\\ No newline at end of file\n+app.listen(5000,() => console.log('Server running on port 5000'));\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1738014660829,
+            "name": "Commit-0",
+            "content": "const express = require('express');\r\n\r\n\r\nconst app = express();\r\n\r\napp.listen(5000,() => console.log('Server running on port 5000'));"
+        }
+    ]
+}

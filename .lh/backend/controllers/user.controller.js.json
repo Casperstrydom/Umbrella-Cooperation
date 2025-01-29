@@ -1,0 +1,38 @@
+{
+    "sourceFile": "backend/controllers/user.controller.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1738103541795,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738144268650,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,14 @@\n import User from \"../models/user.model.js\";\r\n \r\n-export const getUsersForSidebar = async (req, res) => {\r\n-\ttry {\r\n-\t\tconst loggedInUserId = req.user._id;\r\n+export const getUsersFromSidebar = async (req, res) => {};\r\n \r\n-\t\tconst filteredUsers = await User.find({ _id: { $ne: loggedInUserId } }).select(\"-password\");\r\n+try {\r\n \r\n-\t\tres.status(200).json(filteredUsers);\r\n-\t} catch (error) {\r\n-\t\tconsole.error(\"Error in getUsersForSidebar: \", error.message);\r\n-\t\tres.status(500).json({ error: \"Internal server error\" });\r\n\\ No newline at end of file\n-\t}\r\n-};\n+    const loggedInUserId = req.user_id;\r\n+\r\n+    const allUsers = await User.find({ _id: { $ne: loggedInUserId } })\r\n+    \r\n+} catch (error) {\r\n+    console.error('Error in getUsersFromSidebar:', error.message);\r\n+ res.status(500).json({ error: 'Internal Server Error' });\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738144379784,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n try {\r\n \r\n     const loggedInUserId = req.user_id;\r\n \r\n-    const allUsers = await User.find({ _id: { $ne: loggedInUserId } })\r\n+    const filteredUsers = await User.find({ _id: { $ne: loggedInUserId } })\r\n     \r\n } catch (error) {\r\n     console.error('Error in getUsersFromSidebar:', error.message);\r\n  res.status(500).json({ error: 'Internal Server Error' });\r\n"
+                },
+                {
+                    "date": 1738144437642,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,10 @@\n     const loggedInUserId = req.user_id;\r\n \r\n     const filteredUsers = await User.find({ _id: { $ne: loggedInUserId } })\r\n     \r\n+    res.status(200).json(filteredUsers);\r\n+\r\n } catch (error) {\r\n     console.error('Error in getUsersFromSidebar:', error.message);\r\n  res.status(500).json({ error: 'Internal Server Error' });\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738144781951,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,18 @@\n import User from \"../models/user.model.js\";\r\n \r\n-export const getUsersFromSidebar = async (req, res) => {};\r\n+export const getUsersFromSidebar = async (req, res) => {\r\n+    try {\r\n+        // Get logged-in user ID from the request object\r\n+        const loggedInUserId = req.user_id;\r\n \r\n-try {\r\n-\r\n-    const loggedInUserId = req.user_id;\r\n-\r\n-    const filteredUsers = await User.find({ _id: { $ne: loggedInUserId } })\r\n-    \r\n-    res.status(200).json(filteredUsers);\r\n-\r\n\\ No newline at end of file\n-} catch (error) {\r\n-    console.error('Error in getUsersFromSidebar:', error.message);\r\n- res.status(500).json({ error: 'Internal Server Error' });\r\n-}\n+        // Find users other than the logged-in user\r\n+        const filteredUsers = await User.find({ _id: { $ne: loggedInUserId } });\r\n+        \r\n+        // Send the filtered users as the response\r\n+        res.status(200).json(filteredUsers);\r\n+    } catch (error) {\r\n+        // Log and send error response if there's an issue\r\n+        console.error('Error in getUsersFromSidebar:', error.message);\r\n+        res.status(500).json({ error: 'Internal Server Error' });\r\n+    }\r\n+};\r\n"
+                },
+                {
+                    "date": 1738144986231,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n         // Get logged-in user ID from the request object\r\n         const loggedInUserId = req.user_id;\r\n \r\n         // Find users other than the logged-in user\r\n-        const filteredUsers = await User.find({ _id: { $ne: loggedInUserId } });\r\n+        const filteredUsers = await User.find({ _id: { $ne: loggedInUserId } }).select('-password');\r\n         \r\n         // Send the filtered users as the response\r\n         res.status(200).json(filteredUsers);\r\n     } catch (error) {\r\n"
+                }
+            ],
+            "date": 1738103541795,
+            "name": "Commit-0",
+            "content": "import User from \"../models/user.model.js\";\r\n\r\nexport const getUsersForSidebar = async (req, res) => {\r\n\ttry {\r\n\t\tconst loggedInUserId = req.user._id;\r\n\r\n\t\tconst filteredUsers = await User.find({ _id: { $ne: loggedInUserId } }).select(\"-password\");\r\n\r\n\t\tres.status(200).json(filteredUsers);\r\n\t} catch (error) {\r\n\t\tconsole.error(\"Error in getUsersForSidebar: \", error.message);\r\n\t\tres.status(500).json({ error: \"Internal server error\" });\r\n\t}\r\n};"
+        }
+    ]
+}
