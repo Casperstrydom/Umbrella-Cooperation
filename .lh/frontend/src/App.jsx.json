@@ -1,0 +1,82 @@
+{
+    "sourceFile": "frontend/src/App.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 16,
+            "patches": [
+                {
+                    "date": 1738152862210,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738153363892,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,12 +2,15 @@\n \n function App() {\n   return (\n     <>\n-      <button className=\"btn btn-outline\">Default</button>\n+      <button className=\"btn\">Button</button>\n+      <button className=\"btn btn-outline btn-neutral\">Neutral</button>\n       <button className=\"btn btn-outline btn-primary\">Primary</button>\n       <button className=\"btn btn-outline btn-secondary\">Secondary</button>\n       <button className=\"btn btn-outline btn-accent\">Accent</button>\n+      <button className=\"btn btn-outline btn-ghost\">Ghost</button>\n+      <button className=\"btn btn-outline btn-link\">Link</button>\n     </>\n   );\n }\n \n"
+                },
+                {
+                    "date": 1738153522842,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \n function App() {\n   return (\n     <>\n-      <button className=\"btn\">Button</button>\n+      <button className=\"btn btn-outline btn-button\">Button</button>\n       <button className=\"btn btn-outline btn-neutral\">Neutral</button>\n       <button className=\"btn btn-outline btn-primary\">Primary</button>\n       <button className=\"btn btn-outline btn-secondary\">Secondary</button>\n       <button className=\"btn btn-outline btn-accent\">Accent</button>\n"
+                },
+                {
+                    "date": 1738153840219,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,11 @@\n import \"./App.css\";\n \n function App() {\n   return (\n-    <>\n-      <button className=\"btn btn-outline btn-button\">Button</button>\n-      <button className=\"btn btn-outline btn-neutral\">Neutral</button>\n-      <button className=\"btn btn-outline btn-primary\">Primary</button>\n-      <button className=\"btn btn-outline btn-secondary\">Secondary</button>\n-      <button className=\"btn btn-outline btn-accent\">Accent</button>\n-      <button className=\"btn btn-outline btn-ghost\">Ghost</button>\n-      <button className=\"btn btn-outline btn-link\">Link</button>\n-    </>\n+    <div className='p*4 h-screen flex items-center justify-center'>\n+      \n+    </div>\n   );\n }\n \n export default App;\n"
+                },
+                {
+                    "date": 1738154307716,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \n function App() {\n   return (\n     <div className='p*4 h-screen flex items-center justify-center'>\n-      \n+      <Login />\n     </div>\n   );\n }\n \n"
+                },
+                {
+                    "date": 1738154414371,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import \"./App.css\";\n+import Login from './pages/Login';\n \n function App() {\n   return (\n     <div className='p*4 h-screen flex items-center justify-center'>\n"
+                },
+                {
+                    "date": 1738155538225,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n import \"./App.css\";\n-import Login from './pages/Login';\n+import Login from './pages/Login.jsx';\n \n function App() {\n   return (\n-    <div className='p*4 h-screen flex items-center justify-center'>\n+    <div className=\"p-4 h-screen flex items-center justify-center\">\n+\n       <Login />\n     </div>\n   );\n }\n"
+                },
+                {
+                    "date": 1738155690908,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,10 @@\n import \"./App.css\";\n-import Login from './pages/Login.jsx';\n+import Login from \"./pages/Login\"; // Ensure Login.jsx exists in the pages folder\n \n function App() {\n   return (\n     <div className=\"p-4 h-screen flex items-center justify-center\">\n-\n       <Login />\n     </div>\n   );\n }\n"
+                },
+                {
+                    "date": 1738155812220,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import \"./App.css\";\n-import Login from \"./pages/Login\"; // Ensure Login.jsx exists in the pages folder\n+import Login from './pages/login'// Ensure Login.jsx exists in the pages folder\n \n function App() {\n   return (\n     <div className=\"p-4 h-screen flex items-center justify-center\">\n"
+                },
+                {
+                    "date": 1738155867684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import \"./App.css\";\n-import Login from './pages/login'// Ensure Login.jsx exists in the pages folder\n+import Login from '/pages/login'// Ensure Login.jsx exists in the pages folder\n \n function App() {\n   return (\n     <div className=\"p-4 h-screen flex items-center justify-center\">\n"
+                },
+                {
+                    "date": 1738155956148,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n-import \"./App.css\";\n-import Login from '/pages/login'// Ensure Login.jsx exists in the pages folder\n+import Login from './pages/login'// Ensure Login.jsx exists in the pages folder\n \n function App() {\n   return (\n     <div className=\"p-4 h-screen flex items-center justify-center\">\n"
+                },
+                {
+                    "date": 1738156280638,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n-import Login from './pages/login'// Ensure Login.jsx exists in the pages folder\n+import Login from \"./pages/login/Login\";\n \n+\n function App() {\n   return (\n     <div className=\"p-4 h-screen flex items-center justify-center\">\n       <Login />\n"
+                },
+                {
+                    "date": 1738156401815,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import Login from \"./pages/login/Login\";\n+import Login from \"./pages/login/login\";\n \n \n function App() {\n   return (\n"
+                },
+                {
+                    "date": 1738156597591,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n+import \"./index.css\"; // Import the global CSS file\n import Login from \"./pages/login/login\";\n \n-\n function App() {\n   return (\n     <div className=\"p-4 h-screen flex items-center justify-center\">\n       <Login />\n"
+                },
+                {
+                    "date": 1738156692419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import \"./index.css\"; // Import the global CSS file\n+import \"./App.css\";\n import Login from \"./pages/login/login\";\n \n function App() {\n   return (\n"
+                },
+                {
+                    "date": 1738182868536,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n import \"./App.css\";\n-import Login from \"./pages/login/login\";\n+import SignUp from \"./pages/signup/SignUp\";\n \n function App() {\n   return (\n     <div className=\"p-4 h-screen flex items-center justify-center\">\n-      <Login />\n+      <SignUp />\n     </div>\n   );\n }\n \n"
+                },
+                {
+                    "date": 1738187364469,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import \"./App.css\";\n+import Login from \"./pages/login/login\";\n import SignUp from \"./pages/signup/SignUp\";\n \n function App() {\n   return (\n"
+                }
+            ],
+            "date": 1738152862210,
+            "name": "Commit-0",
+            "content": "import \"./App.css\";\n\nfunction App() {\n  return (\n    <>\n      <button className=\"btn btn-outline\">Default</button>\n      <button className=\"btn btn-outline btn-primary\">Primary</button>\n      <button className=\"btn btn-outline btn-secondary\">Secondary</button>\n      <button className=\"btn btn-outline btn-accent\">Accent</button>\n    </>\n  );\n}\n\nexport default App;\n"
+        }
+    ]
+}

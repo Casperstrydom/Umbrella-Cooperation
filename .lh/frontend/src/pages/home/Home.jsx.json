@@ -1,0 +1,26 @@
+{
+    "sourceFile": "frontend/src/pages/home/Home.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1738154275625,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738189187170,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n const Home = () => {\r\n-  return <div>Home</div>;\r\n+  return <div className='flex sm:h-{45px} md:h-{550px} rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'></div>;\r\n };\r\n \r\n export default Home;\r\n"
+                },
+                {
+                    "date": 1738189537200,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,9 @@\n const Home = () => {\r\n-  return <div className='flex sm:h-{45px} md:h-{550px} rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'></div>;\r\n+  return <div className='flex sm:h-{45px} md:h-{550px} rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>\r\n+\r\n+    {/*<Sidebar /> */}\r\n+   { /*<MessageContainer /> */}\r\n+  </div>;\r\n };\r\n \r\n export default Home;\r\n"
+                }
+            ],
+            "date": 1738154275625,
+            "name": "Commit-0",
+            "content": "const Home = () => {\r\n  return <div>Home</div>;\r\n};\r\n\r\nexport default Home;\r\n"
+        }
+    ]
+}
