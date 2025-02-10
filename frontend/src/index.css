@@ -2,28 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Default background for larger screens */
 body {
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), 
-  url('/cross-umbrella-corp-simple-background-1920x1080-art-umbrella-hd-art-wallpaper-preview.jpg');
+    url('/c0e69b299ccf664d21b8f612e18f27ae.jpeg'); /* Large screen background */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  height: 100vh;
+  width: 100vw;
 }
 
-/* dark mode looking scrollbar */
+/* Background for MessageSidebar */
+.fixed {
+  background-image: url('/a-few-wallpapers-i-made-any-love-for-the-resident-evil-v0-ykogdw78zt7e1.jpg'); /* Set your background image path here */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Background for smaller screens */
+@media (max-width: 640px) {
+  body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), 
+      url('/a-few-wallpapers-i-made-any-love-for-the-resident-evil-v0-ykogdw78zt7e1.jpg'); /* Small screen background */
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+/* Dark mode scrollbar styling */
 ::-webkit-scrollbar {
-	width: 8px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-	background: #555;
+  background: #555;
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #121212;
-	border-radius: 5px;
+  background: #121212;
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: #242424;
+  background: #242424;
 }

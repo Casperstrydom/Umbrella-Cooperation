@@ -1,0 +1,42 @@
+{
+    "sourceFile": "frontend/src/context/AuthContext.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1738305083753,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738305630537,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,17 @@\n-import { createContext, useState } from \"react\";\r\n+import { useContext, createContext, useState } from \"react\";\r\n \r\n+export const AuthContext = createContext();\r\n \r\n+export const useAuthContext = () => {\r\n+    return useContext(AuthContext);\r\n+};\r\n \r\n-export const AuthContext = createContext();\r\n+export const AuthProvider = ({ children }) => {\r\n\\ No newline at end of file\n+    const [authUser, setAuthUser] = useState(JSON.parse(localStorage.getItem('chat-user')) || null);\r\n \r\n-export const AuthProvider = ({ children }) => {\r\n-    const [authUser, setAuthUser] = useState(JSON.parse(localStorage.getItem('chat-user') )|| null)\r\n-    return <AuthContext.Provider value={{authUser, setAuthUser}}>\r\n-     {children}</AuthContext.Provider>;\r\n-}\n+    return (\r\n+        <AuthContext.Provider value={{ authUser, setAuthUser }}>\r\n+            {children}\r\n+        </AuthContext.Provider>\r\n+    );\r\n+};\r\n"
+                },
+                {
+                    "date": 1738305785038,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,5 +13,5 @@\n         <AuthContext.Provider value={{ authUser, setAuthUser }}>\r\n             {children}\r\n         </AuthContext.Provider>\r\n     );\r\n-};\n\\ No newline at end of file\n+};\r\n"
+                },
+                {
+                    "date": 1738307431063,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,10 @@\n     return useContext(AuthContext);\r\n };\r\n \r\n export const AuthProvider = ({ children }) => {\r\n-    const [authUser, setAuthUser] = useState(JSON.parse(localStorage.getItem('chat-user')) || null);\r\n+    const storedUser = localStorage.getItem('chat-user');\r\n+    const [authUser, setAuthUser] = useState(storedUser ? JSON.parse(storedUser) : null);\r\n \r\n     return (\r\n         <AuthContext.Provider value={{ authUser, setAuthUser }}>\r\n             {children}\r\n"
+                },
+                {
+                    "date": 1738309919227,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+/* eslint-disable react-refresh/only-export-components */\r\n import { useContext, createContext, useState } from \"react\";\r\n \r\n export const AuthContext = createContext();\r\n \r\n"
+                },
+                {
+                    "date": 1738310215323,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,19 +1,21 @@\n-/* eslint-disable react-refresh/only-export-components */\r\n import { useContext, createContext, useState } from \"react\";\r\n \r\n+// Create the AuthContext\r\n export const AuthContext = createContext();\r\n \r\n+// Custom hook to access AuthContext\r\n export const useAuthContext = () => {\r\n-    return useContext(AuthContext);\r\n+  return useContext(AuthContext);\r\n };\r\n \r\n-export const AuthProvider = ({ children }) => {\r\n-    const storedUser = localStorage.getItem('chat-user');\r\n-    const [authUser, setAuthUser] = useState(storedUser ? JSON.parse(storedUser) : null);\r\n+// AuthContextProvider component\r\n+export const AuthContextProvider = ({ children }) => {\r\n+  const storedUser = localStorage.getItem(\"chat-user\");\r\n+  const [authUser, setAuthUser] = useState(storedUser ? JSON.parse(storedUser) : null);\r\n \r\n-    return (\r\n-        <AuthContext.Provider value={{ authUser, setAuthUser }}>\r\n-            {children}\r\n-        </AuthContext.Provider>\r\n-    );\r\n+  return (\r\n+    <AuthContext.Provider value={{ authUser, setAuthUser }}>\r\n+      {children}\r\n+    </AuthContext.Provider>\r\n+  );\r\n };\r\n"
+                },
+                {
+                    "date": 1738838510272,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +1,14 @@\n-import { useContext, createContext, useState } from \"react\";\r\n+import { createContext, useContext, useState } from \"react\";\r\n \r\n-// Create the AuthContext\r\n export const AuthContext = createContext();\r\n \r\n-// Custom hook to access AuthContext\r\n+// eslint-disable-next-line react-refresh/only-export-components\r\n export const useAuthContext = () => {\r\n-  return useContext(AuthContext);\r\n+\treturn useContext(AuthContext);\r\n };\r\n \r\n-// AuthContextProvider component\r\n export const AuthContextProvider = ({ children }) => {\r\n-  const storedUser = localStorage.getItem(\"chat-user\");\r\n-  const [authUser, setAuthUser] = useState(storedUser ? JSON.parse(storedUser) : null);\r\n+\tconst [authUser, setAuthUser] = useState(JSON.parse(localStorage.getItem(\"chat-user\")) || null);\r\n \r\n-  return (\r\n-    <AuthContext.Provider value={{ authUser, setAuthUser }}>\r\n-      {children}\r\n-    </AuthContext.Provider>\r\n-  );\r\n-};\r\n+\treturn <AuthContext.Provider value={{ authUser, setAuthUser }}>{children}</AuthContext.Provider>;\r\n+};\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1738305083753,
+            "name": "Commit-0",
+            "content": "import { createContext, useState } from \"react\";\r\n\r\n\r\n\r\nexport const AuthContext = createContext();\r\n\r\nexport const AuthProvider = ({ children }) => {\r\n    const [authUser, setAuthUser] = useState(JSON.parse(localStorage.getItem('chat-user') )|| null)\r\n    return <AuthContext.Provider value={{authUser, setAuthUser}}>\r\n     {children}</AuthContext.Provider>;\r\n}"
+        }
+    ]
+}

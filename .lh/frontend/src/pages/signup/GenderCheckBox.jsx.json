@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1738186863064,
@@ -12,6 +12,10 @@
                 {
                     "date": 1738187330632,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,5 +18,34 @@\n         </div>\r\n       </div>\r\n     );\r\n   };\r\n-  \n\\ No newline at end of file\n+  \r\n+  export default GenderCheckBox;\r\n+\r\n+\r\n+\r\n+  //STARTER CODE FOR THIS FILE\r\n+\r\n+//   export const GenderCheckBox = () => {\r\n+//     return (\r\n+//       <div className=\"flex gap-4\">\r\n+//         {/* Male Checkbox */}\r\n+//         <div className=\"form-control\">\r\n+//           <label className=\"label gap-2 cursor-pointer\">\r\n+//             <span className=\"label-text\">Male</span>\r\n+//             <input type=\"checkbox\" className=\"checkbox border-slate-900\" />\r\n+//           </label>\r\n+//         </div>\r\n+  \r\n+//         {/* Female Checkbox */}\r\n+//         <div className=\"form-control\">\r\n+//           <label className=\"label gap-2 cursor-pointer\">\r\n+//             <span className=\"label-text\">Female</span>\r\n+//             <input type=\"checkbox\" className=\"checkbox border-slate-900\" />\r\n+//           </label>\r\n+//         </div>\r\n+//       </div>\r\n+//     );\r\n+//   };\r\n+  \r\n+//   export default GenderCheckBox;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738274828903,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,20 +1,26 @@\n-export const GenderCheckBox = () => {\r\n+export const GenderCheckBox = ({ onCheckboxChange,selectedGender}) => {\r\n     return (\r\n       <div className=\"flex gap-4\">\r\n         {/* Male Checkbox */}\r\n         <div className=\"form-control\">\r\n-          <label className=\"label gap-2 cursor-pointer\">\r\n+          <label className={`label gap-2 cursor-pointer ${selectedGender === \"male\" ? \"selected\" : \"\"}` }>\r\n             <span className=\"label-text\">Male</span>\r\n-            <input type=\"checkbox\" className=\"checkbox border-slate-900\" />\r\n+            <input type=\"checkbox\" className=\"checkbox border-slate-900\" \r\n+              checked={selectedGender === 'male'}\r\n+              onChange={() => onCheckboxChange('male')}\r\n+            />\r\n           </label>\r\n         </div>\r\n   \r\n         {/* Female Checkbox */}\r\n         <div className=\"form-control\">\r\n-          <label className=\"label gap-2 cursor-pointer\">\r\n+          <label className={`label gap-2 cursor-pointer ${selectedGender === \"female\" ? \"selected\" : \"\"}` }>\r\n             <span className=\"label-text\">Female</span>\r\n-            <input type=\"checkbox\" className=\"checkbox border-slate-900\" />\r\n+            <input type=\"checkbox\" className=\"checkbox border-slate-900\" \r\n+             checked={selectedGender === 'female'}\r\n+              onChange={() => onCheckboxChange('female')}\r\n+            />\r\n           </label>\r\n         </div>\r\n       </div>\r\n     );\r\n"
                 }
             ],
             "date": 1738186863064,

@@ -1,0 +1,42 @@
+{
+    "sourceFile": "frontend/src/components/sidebar/Sidebar.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1738822782171,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738823416477,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n import Conversations from './Conversations';\r\n import LogoutButton from './LogoutButton';\r\n import SearchInput from './SearchInput';\r\n-import UserList from './UserList'; // Import the new UserList component\r\n \r\n const Sidebar = () => {\r\n   return (\r\n     <div className=\"border-r border-stone-900 p-4 flex flex-col h-screen\">\r\n@@ -13,15 +12,10 @@\n       <div className=\"flex-1 overflow-auto\">\r\n         <Conversations />\r\n       </div>\r\n \r\n-      {/* New section for displaying users */}\r\n-      <div className=\"divider px-3\"></div>\r\n-      <h2 className=\"text-lg font-semibold\">Users</h2>\r\n-      <UserList /> {/* Add the UserList component here */}\r\n-\r\n       <LogoutButton />\r\n     </div>\r\n   );\r\n };\r\n \r\n-export default Sidebar;\n\\ No newline at end of file\n+export default Sidebar;\r\n"
+                },
+                {
+                    "date": 1738850450924,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n \r\n const Sidebar = () => {\r\n   return (\r\n     <div className=\"border-r border-stone-900 p-4 flex flex-col h-screen\">\r\n+      <button>♨</button>\r\n       <SearchInput />\r\n       <div className=\"divider px-3\"></div>\r\n       \r\n       {/* Scrollable Conversations List */}\r\n"
+                },
+                {
+                    "date": 1738850520282,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,8 @@\n \r\n const Sidebar = () => {\r\n   return (\r\n     <div className=\"border-r border-stone-900 p-4 flex flex-col h-screen\">\r\n-      <button>♨</button>\r\n       <SearchInput />\r\n       <div className=\"divider px-3\"></div>\r\n       \r\n       {/* Scrollable Conversations List */}\r\n"
+                },
+                {
+                    "date": 1738871011594,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,15 @@\n+import { useState } from 'react';\r\n import Conversations from './Conversations';\r\n import LogoutButton from './LogoutButton';\r\n import SearchInput from './SearchInput';\r\n \r\n-const Sidebar = () => {\r\n+const Sidebar = ({ isOpen, toggleSidebar }) => {\r\n   return (\r\n-    <div className=\"border-r border-stone-900 p-4 flex flex-col h-screen\">\r\n+    <div className={`border-r border-stone-900 p-4 flex flex-col h-screen ${isOpen ? 'block' : 'hidden'}`}>\r\n+      <button onClick={toggleSidebar} className=\"absolute top-4 right-4\">\r\n+        ➡️ {/* Arrow button */}\r\n+      </button>\r\n       <SearchInput />\r\n       <div className=\"divider px-3\"></div>\r\n       \r\n       {/* Scrollable Conversations List */}\r\n"
+                },
+                {
+                    "date": 1738871926842,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,18 +1,23 @@\n-import { useState } from 'react';\r\n-import Conversations from './Conversations';\r\n-import LogoutButton from './LogoutButton';\r\n-import SearchInput from './SearchInput';\r\n+import Conversations from \"./Conversations\";\r\n+import LogoutButton from \"./LogoutButton\";\r\n+import SearchInput from \"./SearchInput\";\r\n \r\n const Sidebar = ({ isOpen, toggleSidebar }) => {\r\n   return (\r\n-    <div className={`border-r border-stone-900 p-4 flex flex-col h-screen ${isOpen ? 'block' : 'hidden'}`}>\r\n-      <button onClick={toggleSidebar} className=\"absolute top-4 right-4\">\r\n-        ➡️ {/* Arrow button */}\r\n+    <div\r\n+      className={`border-r border-stone-900 p-4 flex flex-col h-screen\r\n+        ${isOpen ? \"w-full sm:w-1/3 md:w-1/4\" : \"hidden sm:flex sm:w-1/3 md:w-1/4\"} \r\n+        fixed top-0 left-0 bg-gray-900 z-50 sm:relative`}\r\n+    >\r\n+      {/* Close Sidebar Button */}\r\n+      <button onClick={toggleSidebar} className=\"absolute top-4 right-4 text-white\">\r\n+        ➡️\r\n       </button>\r\n+\r\n       <SearchInput />\r\n       <div className=\"divider px-3\"></div>\r\n-      \r\n+\r\n       {/* Scrollable Conversations List */}\r\n       <div className=\"flex-1 overflow-auto\">\r\n         <Conversations />\r\n       </div>\r\n"
+                },
+                {
+                    "date": 1738873094350,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,26 +1,21 @@\n import Conversations from \"./Conversations\";\r\n import LogoutButton from \"./LogoutButton\";\r\n import SearchInput from \"./SearchInput\";\r\n \r\n-const Sidebar = ({ isOpen, toggleSidebar }) => {\r\n+const Sidebar = ({ isOpen, toggleSidebar, openMessage }) => {\r\n   return (\r\n-    <div\r\n-      className={`border-r border-stone-900 p-4 flex flex-col h-screen\r\n-        ${isOpen ? \"w-full sm:w-1/3 md:w-1/4\" : \"hidden sm:flex sm:w-1/3 md:w-1/4\"} \r\n-        fixed top-0 left-0 bg-gray-900 z-50 sm:relative`}\r\n-    >\r\n-      {/* Close Sidebar Button */}\r\n-      <button onClick={toggleSidebar} className=\"absolute top-4 right-4 text-white\">\r\n-        ➡️\r\n+    <div className={`fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md p-6 flex flex-col h-screen transition-transform duration-300 ${isOpen ? \"translate-x-0\" : \"-translate-x-full\"} md:relative md:w-full`}>\r\n+      <button onClick={toggleSidebar} className=\"absolute top-4 right-4 text-white text-2xl\">\r\n+        ✖️\r\n       </button>\r\n-\r\n+      \r\n       <SearchInput />\r\n       <div className=\"divider px-3\"></div>\r\n \r\n-      {/* Scrollable Conversations List */}\r\n+      {/* Conversations List */}\r\n       <div className=\"flex-1 overflow-auto\">\r\n-        <Conversations />\r\n+        <Conversations openMessage={openMessage} />\r\n       </div>\r\n \r\n       <LogoutButton />\r\n     </div>\r\n"
+                }
+            ],
+            "date": 1738822782171,
+            "name": "Commit-0",
+            "content": "import Conversations from './Conversations';\r\nimport LogoutButton from './LogoutButton';\r\nimport SearchInput from './SearchInput';\r\nimport UserList from './UserList'; // Import the new UserList component\r\n\r\nconst Sidebar = () => {\r\n  return (\r\n    <div className=\"border-r border-stone-900 p-4 flex flex-col h-screen\">\r\n      <SearchInput />\r\n      <div className=\"divider px-3\"></div>\r\n      \r\n      {/* Scrollable Conversations List */}\r\n      <div className=\"flex-1 overflow-auto\">\r\n        <Conversations />\r\n      </div>\r\n\r\n      {/* New section for displaying users */}\r\n      <div className=\"divider px-3\"></div>\r\n      <h2 className=\"text-lg font-semibold\">Users</h2>\r\n      <UserList /> {/* Add the UserList component here */}\r\n\r\n      <LogoutButton />\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default Sidebar;"
+        }
+    ]
+}

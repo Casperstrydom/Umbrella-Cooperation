@@ -1,69 +1,69 @@
-import Conversation from '../models/conversation.model.js';
-import Message from '../models/message.model.js';
+import Conversation from "../models/conversation.model.js";
+import Message from "../models/message.model.js";
+import { getReceiverSocketId, io } from "../socket/socket.js";
 
 export const sendMessage = async (req, res) => {
     try {
-        const { message } = req.body;
-        const { id: receiverId } = req.params;
-        const senderId = req.user_id;
-
-        if (!receiverId || !message) {
-            return res.status(400).json({ error: 'Missing receiverId or message content' });
-        }
-
-        // Find an existing conversation between sender and receiver
-        let conversation = await Conversation.findOne({
-            participants: { $all: [senderId, receiverId] },
+      const { message } = req.body;
+      const { id: receiverId } = req.params;
+      const senderId = req.user._id;
+  
+      // Find or create a conversation
+      let conversation = await Conversation.findOne({
+        participants: { $all: [senderId, receiverId] },
+      });
+  
+      if (!conversation) {
+        conversation = await Conversation.create({
+          participants: [senderId, receiverId],
         });
-
-        // If no conversation exists, create a new one
-        if (!conversation) {
-            conversation = await Conversation.create({
-                participants: [senderId, receiverId],
-            });
-        }
-
-        // Create a new message
-        const newMessage = new Message({
-            senderId,
-            receiverId,
-            message,
-        });
-
-        // Save the new message first
-        await newMessage.save();
-
-        // Add the new message to the conversation's messages array
-        conversation.messages.push(newMessage._id);
-
-        // Save the updated conversation with the new message ID
-        await conversation.save();
-
-        res.status(201).json({ message: 'Message sent successfully', data: newMessage });
+      }
+  
+      // Create a new message
+      const newMessage = new Message({
+        senderId,
+        receiverId,
+        message,
+      });
+  
+      // Save the new message
+      await newMessage.save();
+  
+      // Add the new message to the conversation
+      conversation.messages.push(newMessage._id);
+  
+      // Save the conversation
+      await conversation.save();
+  
+      // Send the message via Socket.io to the receiver (if connected)
+      const receiverSocketId = getReceiverSocketId(receiverId);
+      if (receiverSocketId) {
+        io.to(receiverSocketId).emit("newMessage", newMessage);
+      }
+  
+      res.status(201).json(newMessage);
     } catch (error) {
-        console.log('Error in sendMessage controller:', error.message);
-        res.status(500).json({ error: 'Internal Server Error' });
+      console.log("Error in sendMessage controller:", error.message);
+      res.status(500).json({ error: "Internal server error" });
     }
-};
-
-
+  };
+  
 export const getMessages = async (req, res) => {
-    try {
-        const { id: userToChatId } = req.params; // Extract receiver ID from route params
-        const userId = req.user_id;  // Use user ID from the middleware
+	try {
+		const { id: userToChatId } = req.params;
+		const senderId = req.user._id;
 
-        // Find the conversation between the sender and the receiver
-        const conversation = await Conversation.findOne({
-            participants: { $all: [userId, userToChatId] },  // Use userId and receiver's ID to find the conversation
-        }).populate('messages');  // NOT REFERENCE BUT ACTUAL MESSAGES
+		const conversation = await Conversation.findOne({
+			participants: { $all: [senderId, userToChatId] },
+		}).populate("messages"); // NOT REFERENCE BUT ACTUAL MESSAGES
 
-        if (!conversation) return response.status(200).json([]);  // Return an empty array if no conversation exists
+		if (!conversation) return res.status(200).json([]);
 
-        const messages = conversation.messages;  // Extract messages from the conversation
+		const messages = conversation.messages;
 
-        res.status(200).json(messages);  // Return the messages
-    } catch (error) {
-        console.log('Error in getMessage controller:', error.message);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
+		res.status(200).json(messages);
+	} catch (error) {
+		console.log("Error in getMessages controller: ", error.message);
+		res.status(500).json({ error: "Internal server error" });
+	}
 };

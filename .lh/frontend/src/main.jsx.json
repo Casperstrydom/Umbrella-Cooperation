@@ -1,0 +1,70 @@
+{
+    "sourceFile": "frontend/src/main.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 13,
+            "patches": [
+                {
+                    "date": 1738242942705,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738243063750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,14 @@\n import React from 'react';\n import ReactDom from 'react-dom/client';\n import App from './App.jsx';\n import './index.css';\n+import { BrowserRouter } from 'react-router-dom';\n \n+\n ReactDom.createRoot(document.getElementById('root')).render(\n   <React.StrictMode>\n     <BrowserRouter>\n-    <App /> \n+     <App /> \n     </BrowserRouter>\n   </React.StrictMode>\n );\n"
+                },
+                {
+                    "date": 1738244663446,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,13 @@\n-import React from 'react';\n-import ReactDom from 'react-dom/client';\n-import App from './App.jsx';\n-import './index.css';\n-import { BrowserRouter } from 'react-router-dom';\n+import React from \"react\";\n+import ReactDOM from \"react-dom/client\"; // ✅ Fixed import (ReactDOM instead of ReactDom)\n+import App from \"./App.jsx\";\n+import \"./index.css\";\n+import { BrowserRouter } from \"react-router-dom\";\n \n-\n-ReactDom.createRoot(document.getElementById('root')).render(\n+ReactDOM.createRoot(document.getElementById(\"root\")).render(\n   <React.StrictMode>\n     <BrowserRouter>\n-     <App /> \n+      <App />\n     </BrowserRouter>\n   </React.StrictMode>\n );\n"
+                },
+                {
+                    "date": 1738305244463,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,10 @@\n \n ReactDOM.createRoot(document.getElementById(\"root\")).render(\n   <React.StrictMode>\n     <BrowserRouter>\n-      <App />\n+      <AuthContextProvider>\n+        <App />\n+      </AuthContextProvider>\n     </BrowserRouter>\n   </React.StrictMode>\n );\n"
+                },
+                {
+                    "date": 1738305623700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import ReactDOM from \"react-dom/client\"; // ✅ Fixed import (ReactDOM instead of ReactDom)\n import App from \"./App.jsx\";\n import \"./index.css\";\n import { BrowserRouter } from \"react-router-dom\";\n+import { AuthContextProvider } from \"./context/AuthContext\";\n \n ReactDOM.createRoot(document.getElementById(\"root\")).render(\n   <React.StrictMode>\n     <BrowserRouter>\n"
+                },
+                {
+                    "date": 1738307473902,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,11 @@\n import React from \"react\";\n-import ReactDOM from \"react-dom/client\"; // ✅ Fixed import (ReactDOM instead of ReactDom)\n-import App from \"./App.jsx\";\n-import \"./index.css\";\n-import { BrowserRouter } from \"react-router-dom\";\n-import { AuthContextProvider } from \"./context/AuthContext\";\n+import ReactDOM from \"react-dom/client\";\n+import App from \"./App\";\n+import { AuthProvider } from \"./context/AuthContext\";\n \n-ReactDOM.createRoot(document.getElementById(\"root\")).render(\n-  <React.StrictMode>\n-    <BrowserRouter>\n-      <AuthContextProvider>\n-        <App />\n-      </AuthContextProvider>\n-    </BrowserRouter>\n-  </React.StrictMode>\n+const root = ReactDOM.createRoot(document.getElementById(\"root\"));\n+root.render(\n+  <AuthProvider>\n+    <App />\n+  </AuthProvider>\n );\n"
+                },
+                {
+                    "date": 1738307515802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,4 @@\n-import React from \"react\";\n import ReactDOM from \"react-dom/client\";\n import App from \"./App\";\n import { AuthProvider } from \"./context/AuthContext\";\n \n"
+                },
+                {
+                    "date": 1738307641658,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,13 @@\n import ReactDOM from \"react-dom/client\";\n import App from \"./App\";\n import { AuthProvider } from \"./context/AuthContext\";\n+import { BrowserRouter } from \"react-router-dom\"; // Import BrowserRouter\n \n const root = ReactDOM.createRoot(document.getElementById(\"root\"));\n root.render(\n-  <AuthProvider>\n-    <App />\n-  </AuthProvider>\n+  <BrowserRouter> {/* Wrap App inside BrowserRouter */}\n+    <AuthProvider>\n+      <App />\n+    </AuthProvider>\n+  </BrowserRouter>\n );\n"
+                },
+                {
+                    "date": 1738307800243,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n-import ReactDOM from \"react-dom/client\";\n-import App from \"./App\";\n-import { AuthProvider } from \"./context/AuthContext\";\n-import { BrowserRouter } from \"react-router-dom\"; // Import BrowserRouter\n+import React from \"react\";\n+import ReactDOM from \"react-dom/client\"; // ✅ Fixed import (ReactDOM instead of ReactDom)\n+import App from \"./App.jsx\";\n+import \"./index.css\";\n+import { BrowserRouter } from \"react-router-dom\";\n \n-const root = ReactDOM.createRoot(document.getElementById(\"root\"));\n-root.render(\n-  <BrowserRouter> {/* Wrap App inside BrowserRouter */}\n-    <AuthProvider>\n+ReactDOM.createRoot(document.getElementById(\"root\")).render(\n+  <React.StrictMode>\n+    <BrowserRouter>\n       <App />\n-    </AuthProvider>\n-  </BrowserRouter>\n+    </BrowserRouter>\n+  </React.StrictMode>\n );\n"
+                },
+                {
+                    "date": 1738308057722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,12 +2,15 @@\n import ReactDOM from \"react-dom/client\"; // ✅ Fixed import (ReactDOM instead of ReactDom)\n import App from \"./App.jsx\";\n import \"./index.css\";\n import { BrowserRouter } from \"react-router-dom\";\n+import AuthContextProvider from \"./context/AuthContext\";\n \n ReactDOM.createRoot(document.getElementById(\"root\")).render(\n   <React.StrictMode>\n     <BrowserRouter>\n+    <AuthContextProvider>\n       <App />\n+    </AuthContextProvider>\n     </BrowserRouter>\n   </React.StrictMode>\n );\n"
+                },
+                {
+                    "date": 1738308257792,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,11 @@\n import ReactDOM from \"react-dom/client\"; // ✅ Fixed import (ReactDOM instead of ReactDom)\n import App from \"./App.jsx\";\n import \"./index.css\";\n import { BrowserRouter } from \"react-router-dom\";\n-import AuthContextProvider from \"./context/AuthContext\";\n+import { AuthContextProvider } from \"./context/AuthContext\";\n \n+\n ReactDOM.createRoot(document.getElementById(\"root\")).render(\n   <React.StrictMode>\n     <BrowserRouter>\n     <AuthContextProvider>\n"
+                },
+                {
+                    "date": 1738308502940,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,16 +2,12 @@\n import ReactDOM from \"react-dom/client\"; // ✅ Fixed import (ReactDOM instead of ReactDom)\n import App from \"./App.jsx\";\n import \"./index.css\";\n import { BrowserRouter } from \"react-router-dom\";\n-import { AuthContextProvider } from \"./context/AuthContext\";\n \n-\n ReactDOM.createRoot(document.getElementById(\"root\")).render(\n   <React.StrictMode>\n     <BrowserRouter>\n-    <AuthContextProvider>\n       <App />\n-    </AuthContextProvider>\n     </BrowserRouter>\n   </React.StrictMode>\n );\n"
+                },
+                {
+                    "date": 1738309409957,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,12 +2,15 @@\n import ReactDOM from \"react-dom/client\"; // ✅ Fixed import (ReactDOM instead of ReactDom)\n import App from \"./App.jsx\";\n import \"./index.css\";\n import { BrowserRouter } from \"react-router-dom\";\n+import { AuthContextProvider } from './context/AuthContext.jsx'\n \n ReactDOM.createRoot(document.getElementById(\"root\")).render(\n   <React.StrictMode>\n     <BrowserRouter>\n-      <App />\n+      <AuthContextProvider>\n+       <App />\n+      </AuthContextProvider>\n     </BrowserRouter>\n   </React.StrictMode>\n );\n"
+                },
+                {
+                    "date": 1738310236698,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,16 @@\n import React from \"react\";\n-import ReactDOM from \"react-dom/client\"; // ✅ Fixed import (ReactDOM instead of ReactDom)\n+import ReactDOM from \"react-dom/client\";\n import App from \"./App.jsx\";\n import \"./index.css\";\n import { BrowserRouter } from \"react-router-dom\";\n-import { AuthContextProvider } from './context/AuthContext.jsx'\n+import { AuthContextProvider } from './context/AuthContext.jsx'; // Import AuthContextProvider\n \n ReactDOM.createRoot(document.getElementById(\"root\")).render(\n   <React.StrictMode>\n     <BrowserRouter>\n       <AuthContextProvider>\n-       <App />\n+        <App />\n       </AuthContextProvider>\n     </BrowserRouter>\n   </React.StrictMode>\n );\n"
+                }
+            ],
+            "date": 1738242942705,
+            "name": "Commit-0",
+            "content": "import React from 'react';\nimport ReactDom from 'react-dom/client';\nimport App from './App.jsx';\nimport './index.css';\n\nReactDom.createRoot(document.getElementById('root')).render(\n  <React.StrictMode>\n    <BrowserRouter>\n    <App /> \n    </BrowserRouter>\n  </React.StrictMode>\n);\n"
+        }
+    ]
+}

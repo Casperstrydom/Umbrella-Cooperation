@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 12,
+            "activePatchIndex": 15,
             "patches": [
                 {
                     "date": 1738103159803,
@@ -56,6 +56,18 @@
                 {
                     "date": 1738141067417,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \r\n const router = express.Router();\r\n \r\n // Use the getMessages controller in the route\r\n-router.get('/conversation/:id', protectRoute, getMessages);  // Change the route to '/conversation/:id'\r\n+router.get('/:id', protectRoute, getMessages);  // Change the route to '/conversation/:id'\r\n \r\n // POST request for sending a message\r\n router.post('/sent/:id', protectRoute, sendMessage);\r\n \r\n"
+                },
+                {
+                    "date": 1738588799451,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,10 @@\n \r\n const router = express.Router();\r\n \r\n // Use the getMessages controller in the route\r\n-router.get('/:id', protectRoute, getMessages);  // Change the route to '/conversation/:id'\r\n+router.get('/:id', protectRoute, getMessages);  // '/:id' for fetching messages by conversation ID\r\n \r\n // POST request for sending a message\r\n-router.post('/sent/:id', protectRoute, sendMessage);\r\n+router.post('/send/:id', protectRoute, sendMessage);  // Updated to '/send/:id'\r\n \r\n export default router;\r\n"
+                },
+                {
+                    "date": 1738589093374,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,7 +7,8 @@\n // Use the getMessages controller in the route\r\n router.get('/:id', protectRoute, getMessages);  // '/:id' for fetching messages by conversation ID\r\n \r\n // POST request for sending a message\r\n-router.post('/send/:id', protectRoute, sendMessage);  // Updated to '/send/:id'\r\n+router.post('/send/:id', protectRoute, sendMessage);\r\n \r\n+\r\n export default router;\r\n"
+                },
+                {
+                    "date": 1738837869703,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,10 @@\n-import express from 'express';\r\n-import { sendMessage, getMessages } from '../controllers/message.controller.js';  // Import getMessages here\r\n-import protectRoute from '../middleware/protectRoute.js';\r\n+import express from \"express\";\r\n+import { getMessages, sendMessage } from \"../controllers/message.controller.js\";\r\n+import protectRoute from \"../middleware/protectRoute.js\";\r\n \r\n const router = express.Router();\r\n \r\n-// Use the getMessages controller in the route\r\n-router.get('/:id', protectRoute, getMessages);  // '/:id' for fetching messages by conversation ID\r\n+router.get(\"/:id\", protectRoute, getMessages);\r\n+router.post(\"/send/:id\", protectRoute, sendMessage);\r\n \r\n-// POST request for sending a message\r\n-router.post('/send/:id', protectRoute, sendMessage);\r\n-\r\n-\r\n-export default router;\r\n+export default router;\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1738103159803,

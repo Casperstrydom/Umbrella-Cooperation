@@ -1,42 +1,35 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import cookieParser from 'cookie-parser';
+import path from "path";
+import express from "express";
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 
-import authRoutes from './routes/auth.routes.js';
-import messagesRoutes from './routes/message.routes.js'; 
-import userRoutes from './routes/user.routes.js'; 
+import authRoutes from "./routes/auth.routes.js";
+import messageRoutes from "./routes/message.routes.js";
+import userRoutes from "./routes/user.routes.js";
 
-
-import mongoose from 'mongoose';
-
-const app = express();
+import connectToMongoDB from "./db/connectToMongoDB.js";
+import { app, server } from "./socket/socket.js";
 
 dotenv.config();
 
+const __dirname = path.resolve();
+// PORT should be assigned after calling dotenv.config() because we need to access the env variables. Didn't realize while recording the video. Sorry for the confusion.
 const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URI; // Ensure your .env file has this variable set
 
-// Function to connect to MongoDB
-const connectToMongoDB = async () => {
-    try {
-        await mongoose.connect(MONGO_URI); // No options required
-        console.log('Connected to MongoDB');
-    } catch (error) {
-        console.error('Error connecting to MongoDB:', error.message);
-        process.exit(1); // Exit process with failure
-    }
-};
+app.use(express.json()); // to parse the incoming requests with JSON payloads (from req.body)
+app.use(cookieParser());
 
-// Middleware to parse incoming JSON requests
-app.use(express.json()); // Ensure this is before your routes
-app.use(cookieParser()); // Ensure this is before your routes
-// Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/messages', messagesRoutes);
-app.use('/api/users', userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/messages", messageRoutes);
+app.use("/api/users", userRoutes);
 
-// Start the server
-app.listen(PORT, async () => {
-    await connectToMongoDB();
-    console.log(`Server running on port ${PORT}`);
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
+
+server.listen(PORT, () => {
+	connectToMongoDB();
+	console.log(`Server Running on port ${PORT}`);
 });

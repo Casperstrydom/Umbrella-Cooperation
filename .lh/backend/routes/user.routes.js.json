@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 6,
             "patches": [
                 {
                     "date": 1738103277691,
@@ -24,6 +24,14 @@
                 {
                     "date": 1738144854875,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n import express from 'express';\r\n import protectRoute from '../middleware/protectRoute.js';\r\n import { getUsersFromSidebar } from '../controllers/user.controller.js';\r\n \r\n-\r\n const router = express.Router();\r\n \r\n-router.get('/',protectRoute,getUsersForSidebar)\r\n+// Correct the function name to `getUsersFromSidebar`\r\n+router.get('/', protectRoute, getUsersFromSidebar);\r\n\\ No newline at end of file\n \r\n-export default router;\n+export default router;\r\n"
+                },
+                {
+                    "date": 1738571231617,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,5 +6,5 @@\n \r\n // Correct the function name to `getUsersFromSidebar`\r\n router.get('/', protectRoute, getUsersFromSidebar);\r\n \r\n-export default router;\n\\ No newline at end of file\n+export default router;\r\n"
+                },
+                {
+                    "date": 1738837882465,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,9 @@\n-import express from 'express';\r\n-import protectRoute from '../middleware/protectRoute.js';\r\n-import { getUsersFromSidebar } from '../controllers/user.controller.js';\r\n+import express from \"express\";\r\n+import protectRoute from \"../middleware/protectRoute.js\";\r\n+import { getUsersForSidebar } from \"../controllers/user.controller.js\";\r\n \r\n const router = express.Router();\r\n \r\n-// Correct the function name to `getUsersFromSidebar`\r\n-router.get('/', protectRoute, getUsersFromSidebar);\r\n+router.get(\"/\", protectRoute, getUsersForSidebar);\r\n \r\n-export default router;\r\n+export default router;\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1738103277691,

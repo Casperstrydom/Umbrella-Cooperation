@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 22,
             "patches": [
                 {
                     "date": 1738102637935,
@@ -24,6 +24,78 @@
                 {
                     "date": 1738130370442,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,4 +12,5 @@\n // Route for user logout\r\n router.post('/logout', logout);\r\n \r\n export default router;\r\n+  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738757842687,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import express from 'express';\r\n-import { login, logout, signup } from '../controllers/auth.controller.js';\r\n+import { login, logout, signup, verifyEmail } from '../controllers/auth.controller.js';\r\n \r\n const router = express.Router();\r\n \r\n // Route for user signup\r\n@@ -11,6 +11,8 @@\n \r\n // Route for user logout\r\n router.post('/logout', logout);\r\n \r\n-export default router;\r\n-  \n\\ No newline at end of file\n+// Route for email verification\r\n+router.post('/verify-email', verifyEmail); // New route for email verification\r\n+\r\n+export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738757948857,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import express from 'express';\r\n-import { login, logout, signup, verifyEmail } from '../controllers/auth.controller.js';\r\n+import { login, logout, signup } from '../controllers/auth.controller.js';\r\n \r\n const router = express.Router();\r\n \r\n // Route for user signup\r\n@@ -11,8 +11,7 @@\n \r\n // Route for user logout\r\n router.post('/logout', logout);\r\n \r\n-// Route for email verification\r\n-router.post('/verify-email', verifyEmail); // New route for email verification\r\n+  uter.post('/verify-email', verifyEmail); // New route for email verification\r\n \r\n export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738758168219,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import express from 'express';\r\n-import { login, logout, signup } from '../controllers/auth.controller.js';\r\n+import { login, logout, signup, verifyEmail } from '../controllers/auth.controller.js';\r\n \r\n const router = express.Router();\r\n \r\n // Route for user signup\r\n@@ -11,7 +11,8 @@\n \r\n // Route for user logout\r\n router.post('/logout', logout);\r\n \r\n-  uter.post('/verify-email', verifyEmail); // New route for email verification\r\n+// Route for email verification\r\n+router.post('/verify-email', verifyEmail); // Corrected line\r\n\\ No newline at end of file\n \r\n-export default router;\n+export default router;\r\n"
+                },
+                {
+                    "date": 1738758265569,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import express from 'express';\r\n-import { login, logout, signup, verifyEmail } from '../controllers/auth.controller.js';\r\n+import { login, logout, signup } from '../controllers/auth.controller.js';\r\n \r\n const router = express.Router();\r\n \r\n // Route for user signup\r\n@@ -11,8 +11,7 @@\n \r\n // Route for user logout\r\n router.post('/logout', logout);\r\n \r\n-// Route for email verification\r\n-router.post('/verify-email', verifyEmail); // Corrected line\r\n+  uter.post('/verify-email', verifyEmail); // New route for email verification\r\n \r\n\\ No newline at end of file\n-export default router;\n+export default router;\r\n"
+                },
+                {
+                    "date": 1738758439866,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,7 +11,7 @@\n \r\n // Route for user logout\r\n router.post('/logout', logout);\r\n \r\n-  uter.post('/verify-email', verifyEmail); // New route for email verification\r\n+  uter.post('/verify-email', verifyEmail); \r\n \r\n export default router;\r\n"
+                },
+                {
+                    "date": 1738758487965,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import express from 'express';\r\n-import { login, logout, signup } from '../controllers/auth.controller.js';\r\n+import { login, logout, signup, verifyEmail } from '../controllers/auth.controller.js';\r\n \r\n const router = express.Router();\r\n \r\n // Route for user signup\r\n@@ -11,7 +11,8 @@\n \r\n // Route for user logout\r\n router.post('/logout', logout);\r\n \r\n-  uter.post('/verify-email', verifyEmail); \r\n+// Route for email verification\r\n+router.post('/verify-email', verifyEmail); // Corrected line\r\n\\ No newline at end of file\n \r\n-export default router;\n+export default router;\r\n"
+                },
+                {
+                    "date": 1738758591468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import express from 'express';\r\n-import { login, logout, signup, verifyEmail } from '../controllers/auth.controller.js';\r\n+import { login, logout, signup } from '../controllers/auth.controller.js';\r\n \r\n const router = express.Router();\r\n \r\n // Route for user signup\r\n@@ -11,8 +11,8 @@\n \r\n // Route for user logout\r\n router.post('/logout', logout);\r\n \r\n-// Route for email verification\r\n-router.post('/verify-email', verifyEmail); // Corrected line\r\n+  uter.post('/verify-email', verifyEmail); \r\n \r\n\\ No newline at end of file\n-export default router;\n+\r\n+export default router;\r\n"
+                },
+                {
+                    "date": 1738758666832,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,8 @@\n \r\n // Route for user logout\r\n router.post('/logout', logout);\r\n \r\n-  uter.post('/verify-email', verifyEmail); \r\n+router.post('/verify-email', verifyEmail); \r\n \r\n \r\n\\ No newline at end of file\n-export default router;\n+export default router;\r\n"
+                },
+                {
+                    "date": 1738759181126,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,5 +14,5 @@\n \r\n router.post('/verify-email', verifyEmail); \r\n \r\n \r\n-export default router;\n\\ No newline at end of file\n+export default router;\r\n"
+                },
+                {
+                    "date": 1738759885505,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,6 @@\n \r\n // Route for user logout\r\n router.post('/logout', logout);\r\n \r\n-router.post('/verify-email', verifyEmail); \r\n \r\n-\r\n export default router;\r\n"
+                },
+                {
+                    "date": 1738763463242,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,16 @@\n+import express from 'express';\r\n+import { login, logout, signup } from '../controllers/auth.controller.js';\r\n+\r\n+const router = express.Router();\r\n+\r\n+// Route for user signup\r\n+router.post('/signup', signup);\r\n+\r\n+// Route for user login\r\n+router.post('/login', login);\r\n+\r\n+// Route for user logout\r\n+router.post('/logout', logout);\r\n+\r\n+\r\n+export default router;\r\n"
+                },
+                {
+                    "date": 1738763919576,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,28 +1,13 @@\n import express from 'express';\r\n-import { login, logout, signup } from '../controllers/auth.controller.js';\r\n+import { login, signup, updatePassword, logout } from '../controllers/auth.controller.js';\r\n \r\n+\r\n const router = express.Router();\r\n \r\n-// Route for user signup\r\n-router.post('/signup', signup);\r\n+router.post('/update-password', updatePassword); // Add this line for updating password\r\n \r\n-// Route for user login\r\n-router.post('/login', login);\r\n \r\n-// Route for user logout\r\n-router.post('/logout', logout);\r\n-\r\n-\r\n-export default router;\r\n-import express from 'express';\r\n-import { login, logout, signup } from '../controllers/auth.controller.js';\r\n-\r\n-const router = express.Router();\r\n-\r\n-// Route for user signup\r\n-router.post('/signup', signup);\r\n-\r\n // Route for user login\r\n router.post('/login', login);\r\n \r\n // Route for user logout\r\n"
+                },
+                {
+                    "date": 1738764759875,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,28 @@\n import express from 'express';\r\n-import { login, signup, updatePassword, logout } from '../controllers/auth.controller.js';\r\n+import { login, logout, signup } from '../controllers/auth.controller.js';\r\n \r\n-\r\n const router = express.Router();\r\n \r\n-router.post('/update-password', updatePassword); // Add this line for updating password\r\n+// Route for user signup\r\n+router.post('/signup', signup);\r\n \r\n-\r\n // Route for user login\r\n router.post('/login', login);\r\n \r\n // Route for user logout\r\n router.post('/logout', logout);\r\n \r\n \r\n export default router;\r\n+\r\n+\r\n+import express from 'express';\r\n+import { login, signup, updatePassword, logout } from '../controllers/auth.controller.js';\r\n+\r\n+const router = express.Router();\r\n+\r\n+router.post('/update-password', updatePassword); // Add this line for updating password\r\n+router.post('/login', login); // Route for user login\r\n+router.post('/logout', logout); // Route for user logout\r\n+\r\n+export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738764812023,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,13 +15,11 @@\n \r\n export default router;\r\n \r\n \r\n-import express from 'express';\r\n-import { login, signup, updatePassword, logout } from '../controllers/auth.controller.js';\r\n \r\n-const router = express.Router();\r\n \r\n+\r\n router.post('/update-password', updatePassword); // Add this line for updating password\r\n router.post('/login', login); // Route for user login\r\n router.post('/logout', logout); // Route for user logout\r\n \r\n"
+                },
+                {
+                    "date": 1738764824457,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import express from 'express';\r\n-import { login, logout, signup } from '../controllers/auth.controller.js';\r\n+import { login, signup, updatePassword, logout } from '../controllers/auth.controller.js';\r\n \r\n const router = express.Router();\r\n \r\n // Route for user signup\r\n@@ -8,19 +8,11 @@\n \r\n // Route for user login\r\n router.post('/login', login);\r\n \r\n+// Route for updating password\r\n+router.post('/update-password', updatePassword); // Add this line for updating password\r\n+\r\n // Route for user logout\r\n router.post('/logout', logout);\r\n \r\n-\r\n export default router;\r\n-\r\n-\r\n-\r\n-\r\n-\r\n-router.post('/update-password', updatePassword); // Add this line for updating password\r\n-router.post('/login', login); // Route for user login\r\n\\ No newline at end of file\n-router.post('/logout', logout); // Route for user logout\r\n-\r\n-export default router;\n"
+                },
+                {
+                    "date": 1738770356306,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,11 +8,8 @@\n \r\n // Route for user login\r\n router.post('/login', login);\r\n \r\n-// Route for updating password\r\n-router.post('/update-password', updatePassword); // Add this line for updating password\r\n-\r\n // Route for user logout\r\n router.post('/logout', logout);\r\n \r\n-export default router;\r\n+export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738771730434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import express from 'express';\r\n-import { login, signup, updatePassword, logout } from '../controllers/auth.controller.js';\r\n+import { login, signup, logout } from '../controllers/auth.controller.js';\r\n \r\n const router = express.Router();\r\n \r\n // Route for user signup\r\n@@ -11,5 +11,5 @@\n \r\n // Route for user logout\r\n router.post('/logout', logout);\r\n \r\n-export default router;\n\\ No newline at end of file\n+export default router;\r\n"
+                },
+                {
+                    "date": 1738837855952,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,12 @@\n+import express from \"express\";\r\n+import { login, logout, signup } from \"../controllers/auth.controller.js\";\r\n+\r\n+const router = express.Router();\r\n+\r\n+router.post(\"/signup\", signup);\r\n+\r\n+router.post(\"/login\", login);\r\n+\r\n+router.post(\"/logout\", logout);\r\n+\r\n+export default router;\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1738102637935,

@@ -1,10 +1,9 @@
-import express from 'express';
-import protectRoute from '../middleware/protectRoute.js';
-import { getUsersFromSidebar } from '../controllers/user.controller.js';
+import express from "express";
+import protectRoute from "../middleware/protectRoute.js";
+import { getUsersForSidebar } from "../controllers/user.controller.js";
 
 const router = express.Router();
 
-// Correct the function name to `getUsersFromSidebar`
-router.get('/', protectRoute, getUsersFromSidebar);
+router.get("/", protectRoute, getUsersForSidebar);
 
 export default router;

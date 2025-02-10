@@ -1,0 +1,22 @@
+{
+    "sourceFile": "frontend/src/components/skeletons/MessageSkeleton.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1738655738223,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738660115167,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,12 @@\n const MessageSkeleton = () => {\r\n   return (\r\n     <>\r\n       <div className=\"flex w-52 flex-col gap-4\">\r\n-        <div className=\"flex items-center gap-4\">\r\n-          <div className=\"skeleton h-16 w-16 shrink-0 rounded-full\"></div>\r\n-          <div className=\"flex flex-col gap-4\">\r\n-            <div className=\"skeleton h-4 w-20\"></div>\r\n-            <div className=\"skeleton h-4 w-28\"></div>\r\n-          </div>\r\n-        </div>\r\n         <div className=\"skeleton h-32 w-full\"></div>\r\n+        <div className=\"skeleton h-4 w-28\"></div>\r\n+        <div className=\"skeleton h-4 w-full\"></div>\r\n+        <div className=\"skeleton h-4 w-full\"></div>\r\n       </div>\r\n     </>\r\n   );\r\n };\r\n"
+                }
+            ],
+            "date": 1738655738223,
+            "name": "Commit-0",
+            "content": "const MessageSkeleton = () => {\r\n  return (\r\n    <>\r\n      <div className=\"flex w-52 flex-col gap-4\">\r\n        <div className=\"flex items-center gap-4\">\r\n          <div className=\"skeleton h-16 w-16 shrink-0 rounded-full\"></div>\r\n          <div className=\"flex flex-col gap-4\">\r\n            <div className=\"skeleton h-4 w-20\"></div>\r\n            <div className=\"skeleton h-4 w-28\"></div>\r\n          </div>\r\n        </div>\r\n        <div className=\"skeleton h-32 w-full\"></div>\r\n      </div>\r\n    </>\r\n  );\r\n};\r\n\r\nexport default MessageSkeleton;\r\n"
+        }
+    ]
+}

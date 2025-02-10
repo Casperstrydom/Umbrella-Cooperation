@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/hooks/useListenMessages.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1738838272308,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1738838272307,
+            "name": "Commit-0",
+            "content": "import { useEffect } from \"react\";\r\n\r\nimport { useSocketContext } from \"../context/SocketContext\";\r\nimport useConversation from \"../zustand/useConversation\";\r\n\r\nimport notificationSound from \"../assets/sounds/notification.mp3\";\r\n\r\nconst useListenMessages = () => {\r\n\tconst { socket } = useSocketContext();\r\n\tconst { messages, setMessages } = useConversation();\r\n\r\n\tuseEffect(() => {\r\n\t\tsocket?.on(\"newMessage\", (newMessage) => {\r\n\t\t\tnewMessage.shouldShake = true;\r\n\t\t\tconst sound = new Audio(notificationSound);\r\n\t\t\tsound.play();\r\n\t\t\tsetMessages([...messages, newMessage]);\r\n\t\t});\r\n\r\n\t\treturn () => socket?.off(\"newMessage\");\r\n\t}, [socket, setMessages, messages]);\r\n};\r\nexport default useListenMessages;"
+        }
+    ]
+}

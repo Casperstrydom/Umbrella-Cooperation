@@ -1,0 +1,22 @@
+{
+    "sourceFile": "frontend/src/utils/extractTime.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1738677495327,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738680784936,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-export function extractTime(dateString) {\r\n+export default function extractTime(dateString) {\r\n \tconst date = new Date(dateString);\r\n \tconst hours = padZero(date.getHours());\r\n \tconst minutes = padZero(date.getMinutes());\r\n \treturn `${hours}:${minutes}`;\r\n@@ -7,5 +7,6 @@\n \r\n // Helper function to pad single-digit numbers with a leading zero\r\n function padZero(number) {\r\n \treturn number.toString().padStart(2, \"0\");\r\n-}\n\\ No newline at end of file\n+}\r\n+\r\n"
+                }
+            ],
+            "date": 1738677495327,
+            "name": "Commit-0",
+            "content": "export function extractTime(dateString) {\r\n\tconst date = new Date(dateString);\r\n\tconst hours = padZero(date.getHours());\r\n\tconst minutes = padZero(date.getMinutes());\r\n\treturn `${hours}:${minutes}`;\r\n}\r\n\r\n// Helper function to pad single-digit numbers with a leading zero\r\nfunction padZero(number) {\r\n\treturn number.toString().padStart(2, \"0\");\r\n}"
+        }
+    ]
+}

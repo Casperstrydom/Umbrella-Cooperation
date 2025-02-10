@@ -1,13 +1,10 @@
-import express from 'express';
-import { sendMessage, getMessages } from '../controllers/message.controller.js';  // Import getMessages here
-import protectRoute from '../middleware/protectRoute.js';
+import express from "express";
+import { getMessages, sendMessage } from "../controllers/message.controller.js";
+import protectRoute from "../middleware/protectRoute.js";
 
 const router = express.Router();
 
-// Use the getMessages controller in the route
-router.get('/:id', protectRoute, getMessages);  // Change the route to '/conversation/:id'
-
-// POST request for sending a message
-router.post('/sent/:id', protectRoute, sendMessage);
+router.get("/:id", protectRoute, getMessages);
+router.post("/send/:id", protectRoute, sendMessage);
 
 export default router;

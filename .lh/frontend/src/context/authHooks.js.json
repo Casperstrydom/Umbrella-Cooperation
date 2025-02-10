@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/src/context/authHooks.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1738305780958,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1738305780958,
+            "name": "Commit-0",
+            "content": "import { useContext } from \"react\";\r\nimport { AuthContext } from \"./AuthContext\"; // Ensure correct import path\r\n\r\nexport const useAuthContext = () => {\r\n    return useContext(AuthContext);\r\n};\r\n"
+        }
+    ]
+}

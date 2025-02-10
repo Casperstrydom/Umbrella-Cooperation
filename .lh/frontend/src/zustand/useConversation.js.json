@@ -1,0 +1,34 @@
+{
+    "sourceFile": "frontend/src/zustand/useConversation.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1738564168644,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738564274793,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,7 +2,9 @@\n \r\n const useConversation = create((set) => ({\r\n     selectedConversation: null,\r\n     setSelectedConversation: (selectedConversation) => set({ selectedConversation }),\r\n+    messages:[],\r\n+    setMessages: (messages) => set({messages}),\r\n }));\r\n \r\n export default useConversation;\r\n"
+                },
+                {
+                    "date": 1738838463052,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n-import { create } from 'zustand';\r\n+import { create } from \"zustand\";\r\n \r\n const useConversation = create((set) => ({\r\n-    selectedConversation: null,\r\n-    setSelectedConversation: (selectedConversation) => set({ selectedConversation }),\r\n-    messages:[],\r\n-    setMessages: (messages) => set({messages}),\r\n+\tselectedConversation: null,\r\n+\tsetSelectedConversation: (selectedConversation) => set({ selectedConversation }),\r\n+\tmessages: [],\r\n+\tsetMessages: (messages) => set({ messages }),\r\n }));\r\n \r\n-export default useConversation;\r\n+export default useConversation;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738839234829,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n import { create } from \"zustand\";\r\n \r\n const useConversation = create((set) => ({\r\n-\tselectedConversation: null,\r\n-\tsetSelectedConversation: (selectedConversation) => set({ selectedConversation }),\r\n-\tmessages: [],\r\n-\tsetMessages: (messages) => set({ messages }),\r\n+    selectedConversation: null,\r\n+    setSelectedConversation: (selectedConversation) => set({ selectedConversation }),\r\n+    messages: [],\r\n+    setMessages: (messages) => set({ messages }),\r\n }));\r\n \r\n export default useConversation;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738839944788,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,15 @@\n import { create } from \"zustand\";\r\n \r\n+// zustand/useConversation.js\r\n+\r\n const useConversation = create((set) => ({\r\n-    selectedConversation: null,\r\n-    setSelectedConversation: (selectedConversation) => set({ selectedConversation }),\r\n-    messages: [],\r\n-    setMessages: (messages) => set({ messages }),\r\n+  conversationData: [],\r\n+  messages: [],\r\n+  selectedConversation: {},\r\n+  setConversation: (data) => set({ conversationData: data }),\r\n+  setMessages: (data) => set({ messages: data }),\r\n+  setSelectedConversation: (data) => set({ selectedConversation: data }),\r\n }));\r\n \r\n+\r\n export default useConversation;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1738564168643,
+            "name": "Commit-0",
+            "content": "import { create } from 'zustand';\r\n\r\nconst useConversation = create((set) => ({\r\n    selectedConversation: null,\r\n    setSelectedConversation: (selectedConversation) => set({ selectedConversation }),\r\n}));\r\n\r\nexport default useConversation;\r\n"
+        }
+    ]
+}

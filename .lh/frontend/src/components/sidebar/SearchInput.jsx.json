@@ -1,0 +1,26 @@
+{
+    "sourceFile": "frontend/src/components/sidebar/SearchInput.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1738840859958,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738841095865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { useState } from \"react\";\r\n import { IoSearchSharp } from \"react-icons/io5\";\r\n-import useConversation from \"../../zustand/useConversation\";\r\n-import useGetConversations from \"../../hooks/useGetConversations\";\r\n+import useConversation from '../../zustand/useConversation';\r\n+import useGetConversations from '../../../hooks/useGetConversations';\r\n import toast from \"react-hot-toast\";\r\n \r\n const SearchInput = () => {\r\n   const [search, setSearch] = useState(\"\");\r\n@@ -37,9 +37,9 @@\n         title=\"Search for a conversation\" // Tooltip when hovering on the input field\r\n       />\r\n       <button\r\n         type=\"submit\"\r\n-        className=\"btn btn-circle bg-sky-500 text-white\"\r\n+        className=\"btn btn-circle bg-red-700 text-black\"\r\n         title=\"Find\" // Tooltip when hovering on the button\r\n       >\r\n         <IoSearchSharp className=\"w-6 h-6 outline-none\" />\r\n       </button>\r\n"
+                },
+                {
+                    "date": 1738841326468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { useState } from \"react\";\r\n-import { IoSearchSharp } from \"react-icons/io5\";\r\n+import { TbEyeSearch } from \"react-icons/tb\";\r\n import useConversation from '../../zustand/useConversation';\r\n import useGetConversations from '../../../hooks/useGetConversations';\r\n import toast from \"react-hot-toast\";\r\n \r\n@@ -37,12 +37,12 @@\n         title=\"Search for a conversation\" // Tooltip when hovering on the input field\r\n       />\r\n       <button\r\n         type=\"submit\"\r\n-        className=\"btn btn-circle bg-red-700 text-black\"\r\n+        className=\"btn btn-circle bg-red-500 text-black\"\r\n         title=\"Find\" // Tooltip when hovering on the button\r\n       >\r\n-        <IoSearchSharp className=\"w-6 h-6 outline-none\" />\r\n+        <TbEyeSearch className=\"w-6 h-6 outline-none\" />\r\n       </button>\r\n     </form>\r\n   );\r\n };\r\n"
+                }
+            ],
+            "date": 1738840859958,
+            "name": "Commit-0",
+            "content": "import { useState } from \"react\";\r\nimport { IoSearchSharp } from \"react-icons/io5\";\r\nimport useConversation from \"../../zustand/useConversation\";\r\nimport useGetConversations from \"../../hooks/useGetConversations\";\r\nimport toast from \"react-hot-toast\";\r\n\r\nconst SearchInput = () => {\r\n  const [search, setSearch] = useState(\"\");\r\n  const { setSelectedConversation } = useConversation();\r\n  const { conversations } = useGetConversations();\r\n\r\n  const handleSubmit = (e) => {\r\n    e.preventDefault();\r\n    if (!search) return;\r\n    if (search.length < 3) {\r\n      return toast.error(\"Search term must be at least 3 characters long\");\r\n    }\r\n\r\n    const conversation = conversations.find((c) =>\r\n      c.fullName.toLowerCase().includes(search.toLowerCase())\r\n    );\r\n\r\n    if (conversation) {\r\n      setSelectedConversation(conversation);\r\n      setSearch(\"\");\r\n    } else toast.error(\"No such user found!\");\r\n  };\r\n\r\n  return (\r\n    <form onSubmit={handleSubmit} className=\"flex items-center gap-2\">\r\n      <input\r\n        type=\"text\"\r\n        placeholder=\"Search…\"\r\n        className=\"input input-bordered rounded-full\"\r\n        value={search}\r\n        onChange={(e) => setSearch(e.target.value)}\r\n        title=\"Search for a conversation\" // Tooltip when hovering on the input field\r\n      />\r\n      <button\r\n        type=\"submit\"\r\n        className=\"btn btn-circle bg-sky-500 text-white\"\r\n        title=\"Find\" // Tooltip when hovering on the button\r\n      >\r\n        <IoSearchSharp className=\"w-6 h-6 outline-none\" />\r\n      </button>\r\n    </form>\r\n  );\r\n};\r\n\r\nexport default SearchInput;\r\n"
+        }
+    ]
+}

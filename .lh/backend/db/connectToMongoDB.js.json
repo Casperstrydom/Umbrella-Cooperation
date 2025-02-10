@@ -1,0 +1,26 @@
+{
+    "sourceFile": "backend/db/connectToMongoDB.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1738736332011,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738736614077,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,13 +4,16 @@\n dotenv.config(); // Load environment variables from .env file\r\n \r\n const connectToMongoDB = async () => {\r\n   try {\r\n-    await mongoose.connect(process.env.MONGO_URI); // Remove quotes around process.env.MONGO_URI\r\n+    await mongoose.connect(process.env.MONGO_URI, {\r\n+      // REMOVE useNewUrlParser and useUnifiedTopology\r\n+    });\r\n+\r\n     console.log(\"✅ Connected to MongoDB\");\r\n   } catch (error) {\r\n     console.error(\"❌ Error connecting to MongoDB:\", error.message);\r\n-    process.exit(1); // Exit the app if connection fails\r\n+    process.exit(1);\r\n   }\r\n };\r\n \r\n export default connectToMongoDB;\r\n"
+                },
+                {
+                    "date": 1738736749585,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,11 +4,9 @@\n dotenv.config(); // Load environment variables from .env file\r\n \r\n const connectToMongoDB = async () => {\r\n   try {\r\n-    await mongoose.connect(process.env.MONGO_URI, {\r\n-      // REMOVE useNewUrlParser and useUnifiedTopology\r\n-    });\r\n+    await mongoose.connect(process.env.MONGO_URI); // No extra options\r\n \r\n     console.log(\"✅ Connected to MongoDB\");\r\n   } catch (error) {\r\n     console.error(\"❌ Error connecting to MongoDB:\", error.message);\r\n"
+                }
+            ],
+            "date": 1738736332011,
+            "name": "Commit-0",
+            "content": "import mongoose from \"mongoose\";\r\nimport dotenv from \"dotenv\";\r\n\r\ndotenv.config(); // Load environment variables from .env file\r\n\r\nconst connectToMongoDB = async () => {\r\n  try {\r\n    await mongoose.connect(process.env.MONGO_URI); // Remove quotes around process.env.MONGO_URI\r\n    console.log(\"✅ Connected to MongoDB\");\r\n  } catch (error) {\r\n    console.error(\"❌ Error connecting to MongoDB:\", error.message);\r\n    process.exit(1); // Exit the app if connection fails\r\n  }\r\n};\r\n\r\nexport default connectToMongoDB;\r\n"
+        }
+    ]
+}

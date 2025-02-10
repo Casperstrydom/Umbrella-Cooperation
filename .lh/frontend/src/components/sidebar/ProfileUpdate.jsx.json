@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/src/components/sidebar/ProfileUpdate.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1738570813621,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1738570813621,
+            "name": "Commit-0",
+            "content": "import { useState } from 'react';\r\nimport { useAuthContext } from '../../context/AuthContext';\r\n\r\nconst ProfileUpdate = () => {\r\n  const { user } = useAuthContext();\r\n  const [image, setImage] = useState(user.image || '');\r\n  const [name, setName] = useState(user.name || '');\r\n\r\n  const handleUpdate = () => {\r\n    // Logic to update the user's profile (send data to backend API)\r\n    // Ensure the user can only update their own profile\r\n    console.log(\"Updating profile\", { name, image });\r\n\r\n    // Example API call to update profile\r\n    // fetch('/api/users/update', {\r\n    //   method: 'POST',\r\n    //   headers: {\r\n    //     'Content-Type': 'application/json',\r\n    //   },\r\n    //   body: JSON.stringify({ name, image }),\r\n    // })\r\n    //   .then(response => response.json())\r\n    //   .then(data => {\r\n    //     // Handle successful profile update\r\n    //   })\r\n    //   .catch((error) => {\r\n    //     console.error('Error updating profile:', error);\r\n    //   });\r\n  };\r\n\r\n  const handleImageUpload = (event) => {\r\n    const file = event.target.files[0];\r\n    if (file) {\r\n      const reader = new FileReader();\r\n      reader.onloadend = () => {\r\n        setImage(reader.result);  // Set the uploaded image as the new profile picture\r\n      };\r\n      reader.readAsDataURL(file);\r\n    }\r\n  };\r\n\r\n  return (\r\n    <div>\r\n      <h1>Update Profile</h1>\r\n      <div className=\"flex items-center gap-4\">\r\n        {/* Profile Image Section */}\r\n        <div className=\"w-16 h-16 rounded-full overflow-hidden\">\r\n          <img src={image || '/path/to/default/avatar.jpg'} alt=\"Profile Pic\" />\r\n        </div>\r\n\r\n        {/* Image Upload Section */}\r\n        <input\r\n          type=\"file\"\r\n          accept=\"image/*\"\r\n          onChange={handleImageUpload}\r\n          className=\"hidden\"\r\n          id=\"profilePicInput\"\r\n        />\r\n        <label htmlFor=\"profilePicInput\" className=\"cursor-pointer text-blue-500\">\r\n          Upload Image\r\n        </label>\r\n      </div>\r\n\r\n      {/* Name Input */}\r\n      <input\r\n        type=\"text\"\r\n        value={name}\r\n        onChange={(e) => setName(e.target.value)}\r\n        placeholder=\"Name\"\r\n        className=\"mt-2 p-2 border rounded\"\r\n      />\r\n\r\n      {/* Update Button */}\r\n      <button onClick={handleUpdate} className=\"mt-4 p-2 bg-blue-500 text-white rounded\">\r\n        Update\r\n      </button>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default ProfileUpdate;\r\n"
+        }
+    ]
+}

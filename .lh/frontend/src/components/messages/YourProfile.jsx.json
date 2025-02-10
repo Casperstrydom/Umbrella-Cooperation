@@ -1,0 +1,46 @@
+{
+    "sourceFile": "frontend/src/components/messages/YourProfile.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1738851506132,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738851531385,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,5 @@\n+const YourProfile = () => {\r\n+  \r\n+};\r\n+\r\n+export default YourProfile;\r\n"
+                },
+                {
+                    "date": 1738851915393,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,19 @@\n-const YourProfile = () => {\r\n-  \r\n+import { SignUp } from \"./SignUp\"; // Adjust the import according to your folder structure\r\n+\r\n+const YourProfile = ({ toggleProfile }) => {\r\n+  return (\r\n+    <div className=\"bg-slate-900 p-6 rounded-lg\">\r\n+      <h2 className=\"text-white text-xl font-semibold mb-4\">User Profile</h2>\r\n+      {/* Your Profile content */}\r\n+      <SignUp /> {/* Render the SignUp form inside YourProfile */}\r\n+      <button\r\n+        className=\"mt-4 bg-red-600 text-white px-4 py-2 rounded\"\r\n+        onClick={() => toggleProfile(false)} // Close profile when toggling\r\n+      >\r\n+        Back to Chat\r\n+      </button>\r\n+    </div>\r\n+  );\r\n };\r\n \r\n export default YourProfile;\r\n"
+                },
+                {
+                    "date": 1738852055270,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { SignUp } from \"./SignUp\"; // Adjust the import according to your folder structure\r\n+import SignUp from '../../pages/signup/SignUp';\r\n \r\n const YourProfile = ({ toggleProfile }) => {\r\n   return (\r\n     <div className=\"bg-slate-900 p-6 rounded-lg\">\r\n"
+                },
+                {
+                    "date": 1738852208368,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,19 +1,29 @@\n-import SignUp from '../../pages/signup/SignUp';\r\n-\r\n-const YourProfile = ({ toggleProfile }) => {\r\n-  return (\r\n-    <div className=\"bg-slate-900 p-6 rounded-lg\">\r\n-      <h2 className=\"text-white text-xl font-semibold mb-4\">User Profile</h2>\r\n-      {/* Your Profile content */}\r\n-      <SignUp /> {/* Render the SignUp form inside YourProfile */}\r\n-      <button\r\n-        className=\"mt-4 bg-red-600 text-white px-4 py-2 rounded\"\r\n-        onClick={() => toggleProfile(false)} // Close profile when toggling\r\n-      >\r\n-        Back to Chat\r\n-      </button>\r\n-    </div>\r\n-  );\r\n-};\r\n-\r\n-export default YourProfile;\r\n+const YourProfile = ({ userDetails, toggleProfile }) => {\r\n+    return (\r\n+      <div className=\"bg-slate-900 p-6 rounded-lg\">\r\n+        <h2 className=\"text-white text-xl font-semibold mb-4\">User Profile</h2>\r\n+        <div className=\"text-white mb-2\">\r\n+          <strong>Full Name:</strong> {userDetails.fullName || \"Unknown\"}\r\n+        </div>\r\n+        <div className=\"text-white mb-2\">\r\n+          <strong>Username:</strong> {userDetails.username || \"Unknown\"}\r\n+        </div>\r\n+        <div className=\"text-white mb-2\">\r\n+          <strong>Gender:</strong> {userDetails.gender || \"Not specified\"}\r\n+        </div>\r\n+        <div className=\"text-white mb-4\">\r\n+          <strong>Other Details:</strong> {/* Add any other user details here */}\r\n+        </div>\r\n+  \r\n+        <button\r\n+          className=\"mt-4 bg-red-600 text-white px-4 py-2 rounded\"\r\n+          onClick={() => toggleProfile(false)} // Close profile when toggling\r\n+        >\r\n+          Back to Chat\r\n+        </button>\r\n+      </div>\r\n+    );\r\n+  };\r\n+  \r\n+  export default YourProfile;\r\n+  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738852263336,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,12 +15,11 @@\n           <strong>Other Details:</strong> {/* Add any other user details here */}\r\n         </div>\r\n   \r\n         <button\r\n-          className=\"mt-4 bg-red-600 text-white px-4 py-2 rounded\"\r\n           onClick={() => toggleProfile(false)} // Close profile when toggling\r\n         >\r\n-          Back to Chat\r\n+          ♨\r\n         </button>\r\n       </div>\r\n     );\r\n   };\r\n"
+                },
+                {
+                    "date": 1738852403386,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,15 +11,15 @@\n         <div className=\"text-white mb-2\">\r\n           <strong>Gender:</strong> {userDetails.gender || \"Not specified\"}\r\n         </div>\r\n         <div className=\"text-white mb-4\">\r\n-          <strong>Other Details:</strong> {/* Add any other user details here */}\r\n+          <strong></strong> {/* Add any other user details here */}\r\n         </div>\r\n   \r\n         <button\r\n           onClick={() => toggleProfile(false)} // Close profile when toggling\r\n         >\r\n-          ♨\r\n+          🔓\r\n         </button>\r\n       </div>\r\n     );\r\n   };\r\n"
+                },
+                {
+                    "date": 1738852883466,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,21 @@\n const YourProfile = ({ userDetails, toggleProfile }) => {\r\n     return (\r\n       <div className=\"bg-slate-900 p-6 rounded-lg\">\r\n         <h2 className=\"text-white text-xl font-semibold mb-4\">User Profile</h2>\r\n+  \r\n+        {/* Profile Image */}\r\n+        {userDetails.profileImage && (\r\n+          <div className=\"mb-4\">\r\n+            <img\r\n+              src={userDetails.profileImage} // Profile image URL\r\n+              alt=\"Profile\"\r\n+              className=\"w-24 h-24 rounded-full border-2 border-white\"\r\n+            />\r\n+          </div>\r\n+        )}\r\n+  \r\n+        {/* User Details */}\r\n         <div className=\"text-white mb-2\">\r\n           <strong>Full Name:</strong> {userDetails.fullName || \"Unknown\"}\r\n         </div>\r\n         <div className=\"text-white mb-2\">\r\n@@ -10,16 +23,19 @@\n         </div>\r\n         <div className=\"text-white mb-2\">\r\n           <strong>Gender:</strong> {userDetails.gender || \"Not specified\"}\r\n         </div>\r\n-        <div className=\"text-white mb-4\">\r\n-          <strong></strong> {/* Add any other user details here */}\r\n+  \r\n+        {/* Add any other user details here */}\r\n+        <div className=\"text-white mb-2\">\r\n+          <strong>Email:</strong> {userDetails.email || \"Not provided\"}\r\n         </div>\r\n   \r\n         <button\r\n           onClick={() => toggleProfile(false)} // Close profile when toggling\r\n+          className=\"text-white mt-4\"\r\n         >\r\n-          🔓\r\n+          🔓 Close Profile\r\n         </button>\r\n       </div>\r\n     );\r\n   };\r\n"
+                }
+            ],
+            "date": 1738851506132,
+            "name": "Commit-0",
+            "content": ""
+        }
+    ]
+}

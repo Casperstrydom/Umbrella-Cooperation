@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/src/context/SocketContext.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1738838551879,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1738838551879,
+            "name": "Commit-0",
+            "content": "import { createContext, useState, useEffect, useContext } from \"react\";\r\nimport { useAuthContext } from \"./AuthContext\";\r\nimport io from \"socket.io-client\";\r\n\r\nconst SocketContext = createContext();\r\n\r\nexport const useSocketContext = () => {\r\n\treturn useContext(SocketContext);\r\n};\r\n\r\nexport const SocketContextProvider = ({ children }) => {\r\n\tconst [socket, setSocket] = useState(null);\r\n\tconst [onlineUsers, setOnlineUsers] = useState([]);\r\n\tconst { authUser } = useAuthContext();\r\n\r\n\tuseEffect(() => {\r\n\t\tif (authUser) {\r\n\t\t\tconst socket = io(\"https://chat-app-yt.onrender.com\", {\r\n\t\t\t\tquery: {\r\n\t\t\t\t\tuserId: authUser._id,\r\n\t\t\t\t},\r\n\t\t\t});\r\n\r\n\t\t\tsetSocket(socket);\r\n\r\n\t\t\t// socket.on() is used to listen to the events. can be used both on client and server side\r\n\t\t\tsocket.on(\"getOnlineUsers\", (users) => {\r\n\t\t\t\tsetOnlineUsers(users);\r\n\t\t\t});\r\n\r\n\t\t\treturn () => socket.close();\r\n\t\t} else {\r\n\t\t\tif (socket) {\r\n\t\t\t\tsocket.close();\r\n\t\t\t\tsetSocket(null);\r\n\t\t\t}\r\n\t\t}\r\n\t}, [authUser]);\r\n\r\n\treturn <SocketContext.Provider value={{ socket, onlineUsers }}>{children}</SocketContext.Provider>;\r\n};"
+        }
+    ]
+}
